@@ -5,7 +5,7 @@ date: "4/7/2020"
 output: html_document
 ---
 
-Some quick calculations to generate magnitude of elevation shift barplots for the supplement (Figs S4-S5) of Williamson & Witt, 'Elevational niche-shift migration'. 
+Some quick calculations to generate magnitude of elevation shift barplots for the supplement (Figs S4-S5) of Williamson & Witt, 'Elevational niche-shift migration'.
 
 
 ---
