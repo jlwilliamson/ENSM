@@ -1,5 +1,5 @@
 ---
-title: "ENSM_Range_of_Elevational_Magnitudes"
+title: "ENSM Magnitude of Shift Barplots"
 author: "Jessie Williamson"
 date: "4/7/2020"
 output: html_document
