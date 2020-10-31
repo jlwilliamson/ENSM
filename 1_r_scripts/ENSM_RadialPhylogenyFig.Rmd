@@ -1,0 +1,349 @@
+---
+title: "ENSM Radial Phylogeny (Figure 2) - backbone"
+author: Jessie Williamson
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+This script is used to produce the radial phylogeny figure in Williamson & Witt, ENSM (Figure 2). It contains code for reading in .nex tree files and corresponding .csv files with "phenotypic" data (aka migration mode and magnitudes of elevational shift), as well as some data for labeling clades. The final tree file was read out of R in .pdf form and extensive editing took place in Illustrator afterwards. So please note: the final results produced from this script do not generate the figure. 
+
+This radial phylogeny has 91 tips, corresponding to 12 complete ENSM species and 79 partial ENSM species. 
+Note that it only includes 91 of 92 ENSM species becuase Tarsiger rufilatus used to be considered a subspecies of Tarsiger cyanurus and is not included in BirdTree taxonomy (this is explained in the Supplement). 
+
+Many thanks to Chauncey R. Gadek for initial code and help with tree files and data wrangling  
+
+Jessie personal note: see "ENSM_RadialPhylogenyFig_DataVersionNotes.txt" doc for notes on naming history and file versions (all versions provided here are updated/correct version).
+
+
+------
+
+###### SCRIPT BEGIN #######
+
+
+```{R, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment = NA, message = FALSE, warning = FALSE, fig.align = "center")
+knitr::opts_chunk$set(cache = FALSE)
+rm(list =ls (all = TRUE))
+```
+
+# Set working directory and load packages 
+```{R}
+setwd("/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/0_data_files")
+library(ape)
+library(phangorn)
+library(rphast)
+library(phytools)
+library(plyr)
+```
+
+
+# Radial phylogeny data
+```{R}
+tree <- read.nexus(file = "tree_fams_FINAL.nex") #read tree from .nex file
+write.tree(tree[[41]], file = "tree.tre") # picks out tree 41 "randomly" and write it to tree file
+  # (because nexus block contains ~100 trees)
+tree <- read.tree(file = "tree.tre") # read in the single tree file
+all_spp <- tree$tip.label # get vector of tip label (species name strings)
+# write.csv(all_spp, file = "ENSM_species_check.csv") # write new csv of tip label vectors
+trait <- read.csv("ENSM_families_FINAL.csv", header = TRUE) # read in trait data csv
+count(trait$ENSM) # Verify that counts for complete and partial ENSM are correct
+  # should have n=12 complete ENSM species and n=79 partial ENSM species 
+  # Remember that T. rufilatus isn't included, so count is 79 partial, NOT 80 (as in Supplementary Table S1)
+
+row.names(trait) <- trait$species # IMPORTANT! Set tip labels (species names as row names) for phytools to work
+
+# Make named vector of migration types: 
+mig.type <- setNames(trait[,3], rownames(trait)); mig.type # attaches species name to its migration mode
+
+# Make named vector of migration magnitude:
+mig.magnitude <- setNames(trait[,5], rownames(trait)); mig.magnitude # attaches species  name to migration magnitude
+#marker1000 <- setNames(trait[,6], rownames(trait)) 
+#marker2000 <- setNames(trait[,7], rownames(trait))
+#marker3000 <- setNames(trait[,8], rownames(trait))
+#marker4000 <- setNames(trait[,9], rownames(trait))
+#marker5000 <- setNames(trait[,10], rownames(trait))
+# (I'd intended to use these to denote markers, but ended up just making gray circles in Illustrator to show the same thing)
+
+# Estimate ancestral states (not necessary to make the figure): 
+#fitER <- ace(mig.type, tree, model="ER", type="discrete"); fitER 
+  # Model can be changed 
+  # Current modeL: equal rates for all transitions with discrete chacarcters (NOT USING CURRENTLY)
+  # Ask CRG about this code/what it means
+# mtree <- make.simmap(tree, mig.type, model="ER") # maps ancetsral traits onto tree object
+```
+
+
+# Make radial phylogeny fig
+```{r}
+# paint branches by trait, rather than ancestral state reconstruction
+none <- names(mig.type)[mig.type=="none"]; none # subset of named tips w/ "none" migration type
+partial <- names(mig.type)[mig.type=="partial"]; partial # subset of named tips w/ "partial" migration type
+complete <- names(mig.type)[mig.type=="complete"]; complete # subset of named tips w/ "complete" migration type
+
+# paint braches corresponding to migration modes:
+tt <- paintBranches(tree, edge=sapply(partial, match, tree$tip.label), state="partial", anc.state="none")
+tt <- paintBranches(tt, edge=sapply(complete, match, tree$tip.label), state="complete")
+
+# assign colors to migration modes
+cols <- setNames(c("darkslategray3","navy","red2"),c("none", "partial", "complete")) 
+  # Note that these are just stand-in colors; all color editing really took place in Adobe Illustrator
+
+# Plot phylogeny w/ branches colored by migration type + migration magnitude
+plotTree.wBars(tt, mig.magnitude, 
+               type="fan", # radial phylogeny
+               split.vertical=TRUE, 
+               tip.labels=FALSE, # default is false; plots species names at tip labels = unintelligble
+               method="plotSimmap", 
+               colors=cols, # colors branches by partial and complete
+               lwd=0.75, # thickness of tree branches
+               scale=0.005, # height of migration magnitude
+               width=0.05, # width of tip bars
+               col="springgreen1", # colors of magnitude bars (argument border= changes color of outside ring)
+               border=NULL) 
+#labels <- paste("", LETTERS[1:length(nodes)])
+#for(i in 1:length(nodes)) 
+#arc.cladelabels(text=labels[i],node=nodes[i]) # removed text=labels[]
+# cladelabels(text="Sylviidae", node=syl.node, offset=2.5) # This adds a clade label; kind of clunky for my purposes
+add.simmap.legend(colors=cols, # vector of colors of mapped states
+                  x=0.9*par()$usr[1], 
+                  y=0.9*par()$usr[4], 
+                  prompt=FALSE, 
+                  fsize=0.9) # font size for tip labels
+
+```
+
+
+# Get clade Labels 
+The goal of this code chunk is to plot red dots at clade nodes so that I can read this file into Illustrator and use it to identify family clades and then make Order labels. Note: These labels won't appear in the final figure, but they'll help me with artistic stuff in Illustrator. 
+```{r}
+data <- read.csv("ENSM_families_FINAL.csv", header=TRUE) # read in trait data csv
+# Note: same trait data as above, but wanted this without rownames
+
+# Get internal nodes in order they appear on the tree:
+
+anatidae <- data[data$family == c("Anatidae"), ]  # A
+ana.tips <- as.vector(anatidae$species) # extract just species names; convert to vector 
+ana.node <- findMRCA(tree, tips=ana.tips, type="node")# get internal node w/ phytools
+# ana.node.v2 <- getMRCA(tree, ana.tips) # ape; same result as phytools
+
+trochilidae <- data[data$family == c("Trochilidae"), ] # B
+tro.tips <- as.vector(trochilidae$species)
+tro.node <- findMRCA(tree, tips=tro.tips, type="node")
+
+laridae <- data[data$family == c("Laridae"), ] # C
+lar.tips <- as.vector(laridae$species)
+lar.node <- findMRCA(tree, tips=lar.tips, type="node")
+
+scolopacidae <- data[data$family == c("Scolopacidae"), ] # D
+sco.tips <- as.vector(scolopacidae$species)
+sco.node <- findMRCA(tree, tips=sco.tips, type="node")
+
+charadriidae <- data[data$family == c("Charadriidae"), ] # E
+cha.tips <- as.vector(charadriidae$species)
+cha.node <- findMRCA(tree, tips=cha.tips, type="node")
+
+#ibidorhynchidae <- data[data$family == c("Ibidorhynchidae"), ]  # can't find a node of 1??
+#ibi.tips <- as.vector(ibidorhynchidae$species)
+#ibi.node <- findMRCA(tree, tips=ibi.tips, type="node")
+
+falconidae <- data[data$family == c("Falconidae"), ] # F
+fal.tips <- as.vector(falconidae$species)
+fal.node <- findMRCA(tree, tips=fal.tips, type="node")
+
+tyrannidae <- data[data$family == c("Tyrannidae"), ] # G
+tyr.tips <- as.vector(tyrannidae$species) 
+tyr.node <- findMRCA(tree, tips=tyr.tips, type="node")   
+
+furnariidae <- data[data$family == c("Furnariidae"), ] # H
+fur.tips <- as.vector(furnariidae$species) 
+fur.node <- findMRCA(tree, tips=fur.tips, type="node")
+
+laniidae <- data[data$family == c("Laniidae"), ] # I 
+lan.tips <- as.vector(laniidae$species) 
+lan.node <- findMRCA(tree, tips=lan.tips, type="node")
+
+alaudidae <- data[data$family == c("Alaudidae"), ] # J 
+ala.tips <- as.vector(alaudidae$species) 
+ala.node <- findMRCA(tree, tips=ala.tips, type="node")
+
+locustellidae <- data[data$family == c("Locustellidae"), ] # K
+loc.tips <- as.vector(locustellidae$species) 
+loc.node <- findMRCA(tree, tips=loc.tips, type="node")
+
+pnoepygidae <- data[data$family == c("Pnoepygidae"), ] # L 
+pno.tips <- as.vector(pnoepygidae$species) 
+pno.node <- findMRCA(tree, tips=pno.tips, type="node")
+
+sylviidae <- data[data$family == c("Sylviidae"), ] # M 
+syl.tips <- as.vector(sylviidae$species) 
+syl.node <- findMRCA(tree, tips=syl.tips, type="node")
+
+hirundinidae <- data[data$family == c("Hirundinidae"), ] # N
+hir.tips <- as.vector(hirundinidae$species) 
+hir.node <- findMRCA(tree, tips=hir.tips, type="node")
+
+cetiidae <- data[data$family == c("Cetiidae"), ] # O
+cet.tips <- as.vector(cetiidae$species) 
+cet.node <- findMRCA(tree, tips=cet.tips, type="node")
+
+phylloscopidae <- data[data$family == c("Phylloscopidae"), ] # P
+phy.tips <- as.vector(phylloscopidae$species) 
+phy.node <- findMRCA(tree, tips=phy.tips, type="node")
+
+turdidae <- data[data$family == c("Turdidae"), ] # Q
+tur.tips <- as.vector(turdidae$species) 
+tur.node <- findMRCA(tree, tips=tur.tips, type="node")
+
+muscicapidae <- data[data$family == c("Muscicapidae"), ] # R
+mus.tips <- as.vector(muscicapidae$species) 
+mus.node <- findMRCA(tree, tips=mus.tips, type="node")
+
+#tichodromidae <- data[data$family == c("Tichodromidae"), ] # can't find a node of 1???
+#tic.tips <- as.vector(tichodromidae$species) 
+#tic.node <- findMRCA(tree, tips=tic.tips, type="node")
+
+prunellidae <- data[data$family == c("Prunellidae"), ] # S
+pru.tips <- as.vector(prunellidae$species) 
+pru.node <- findMRCA(tree, tips=pru.tips, type="node")
+
+fringillidae <- data[data$family == c("Fringillidae"), ] # T
+fri.tips <- as.vector(fringillidae$species) 
+fri.node <- findMRCA(tree, tips=fri.tips, type="node")
+
+emberizidae <- data[data$family == c("Emberizidae"), ] # Blank, but you've IDed in on phylogeny
+emb.tips <- as.vector(emberizidae$species) 
+emb.node <- findMRCA(tree, tips=emb.tips, type="node")
+
+motacillidae <- data[data$family == c("Motacillidae"), ] # U
+mot.tips <- as.vector(motacillidae$species) 
+mot.node <- findMRCA(tree, tips=mot.tips, type="node")
+
+accipitridae <- data[data$family == c("Accipitridae"), ] # V
+acc.tips <- as.vector(accipitridae$species) 
+acc.node <- findMRCA(tree, tips=acc.tips, type="node")
+
+picidae <- data[data$family == c("Picidae"), ] # W
+pic.tips <- as.vector(picidae$species) 
+pic.node <- findMRCA(tree, tips=pic.tips, type="node")
+
+columbidae <- data[data$family == c("Columbidae"), ] # X
+col.tips <- as.vector(columbidae$species) 
+col.node <- findMRCA(tree, tips=col.tips, type="node")
+
+cuculidae <- data[data$family == c("Cuculidae"), ] # Y
+cul.tips <- as.vector(cuculidae$species) 
+cul.node <- findMRCA(tree, tips=cul.tips, type="node")
+
+gruidae <- data[data$family == c("Gruidae"), ] # Z
+gru.tips <- as.vector(gruidae$species) 
+gru.node <- findMRCA(tree, tips=gru.tips, type="node")
+
+
+nodes <- c(ana.node, tro.node, lar.node, sco.node, cha.node, fal.node, tyr.node, fur.node, lan.node, ala.node, loc.node, pno.node, syl.node, hir.node, cet.node, phy.node, tur.node, mus.node, pru.node, fri.node, emb.node, mot.node, acc.node, pic.node, col.node, cul.node, gru.node) #need to designate internal nodes for each common ancestor of every clade you want to name and have them deliniated in csv
+  # ibi.tips goes after cha.tips and before fal.tips
+  # tic.tips goes after mus.tips and before pru.tips 
+labels <- paste("", LETTERS[1:length(nodes)])
+plotTree(tree, type="fan", lwd=1, ftype="off", xlim=c(-1.1,1.1), ln.offset=5)
+for(i in 1:length(nodes)) 
+arc.cladelabels(node=nodes[i], text=labels[i])
+
+# sample code to find clade label for one tip (i.e.Tichodromidae & Ibidorhynchidae)
+#plotTree(tree,type="fan",fsize=0.8,xlim=c(-4.1,4.1))
+#arc.cladelabels(text="clade C",node=which(tree$tip.label=="t8"),
+#    orientation="horizontal",ln.offset=1.1,lab.offset=1.12)
+
+# Should be 27 total nodes plotted (because no node markers for Ibidorhynchidae and Tichodromidae)
+
+# code from CRG:
+#nodes <- c(104,118,122,137,149,175,189,190) #need to designate internal nodes for each common ancestor of every clade you want to name and have them deliniated in csv
+#labels <- paste("Clade", LETTERS[1:length(nodes)])
+```
+
+
+----
+
+ ###### HELPFUL TUTORIALS AND OTHER INFO: ######
+
+
+Tutorial for designing radial phylogenies: 
+http://www.phytools.org/Cordoba2017/ex/15/Plotting-methods.html
+
+Phytools workshop: 
+http://www.phytools.org/Cordoba2017/
+
+ggtree tutorial: 
+https://yulab-smu.github.io/treedata-book/chapter6.html#viewing-selected-clade
+
+Stacked Barplot for radial phylogeny: 
+http://blog.phytools.org/2018/04/update-hack-to-get-stacked-bars-in.html
+
+Another cool ggtree tutorial: https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/ggtree/inst/doc/ggtree.html
+
+Annotation of circular trees using ggtree: 
+https://github.com/YuLab-SMU/ggtree/issues/78
+
+Circular trees w/ python:
+https://bitbucket.org/nsegata/graphlan/wiki/Home
+
+Phytools clade labels: 
+http://blog.phytools.org/2017/05/arccladelabels-using-names-of.html
+
+Needs vector of nodes 
+vector = common ancestor of clades I want to name
+ape get common ancestor
+extract species names, get fam vector, run that in phytools, get node for fam
+
+take ENSM fam file, subset by family 
+
+---------
+
+ ###### CUT/OLD CODE, NOT USING #######
+
+```{R}
+plotTree(tree,type="fan",fsize=0.0,ftype="i",lwd=0.1)
+cols<-setNames(c("red","blue", "green"),levels(mig.type))
+tiplabels(pie=to.matrix(mig.type[tree$tip.label],
+    levels(mig.type)),piecol=cols,cex=0.3)
+add.simmap.legend(colors=cols,prompt=FALSE,x=0.9*par()$usr[1],
+    y=0.8*par()$usr[3],fsize=0.8)
+
+# Old code you aren't using:
+ # plots ancestral state reconstruction
+#plot(mtree, cols, 
+ #    type="fan", 
+  #   fsize=0.01, 
+  #   lwd=0.7, 
+   #  ftype="i")
+# add.simmap.legend(colors=cols, x=0.9*par()$usr[1], y=0.9*par()$usr[4], prompt=FALSE, fsize=0.9)
+
+# for reference only: node plotting code from below: 
+#labels <- paste("#", LETTERS[1:length(nodes)])
+#plotTree(tree, type="fan", lwd=1, ftype="off", xlim=c(-1.1,1.1))
+#for(i in 1:length(nodes)) 
+#arc.cladelabels(text=labels[i],node=nodes[i])
+
+# A bunch of old color schemes I played around with: 
+
+cols <- setNames(c("cornsilk3","blue3","darkorchid1"),c("none", "partial", "complete"))
+cols <- setNames(c("darkslategray","springgreen1","#E84A5F"),c("none", "partial", "complete"))
+#cols <- setNames(c("#2A363B","springgreen1","#E84A5F"),c("none", "partial", "complete"))
+cols <- setNames(c("#400000","#08e8de","magenta2"),c("none", "partial", "complete"))
+cols <- setNames(c("darkslategray3","navy","red2"),c("none", "partial", "complete"))
+cols <- setNames(c("antiquewhite4","blue3","#08e8de"),c("none", "partial", "complete"))
+cols <- setNames(c("darkslategray3","blue3","red2"),c("none", "partial", "complete")) # bright blue base
+cols <- setNames(c("cadetblue","blue3","red2"),c("none", "partial", "complete")) 
+
+# colors 1 has #2A363B
+# colors 2 has midnightblue
+# colors 3 has darkslategray
+# colors 4 #400000","#08e8de","magenta2"
+# colors 5 "darkslategray3","navy","red2"
+# colors 6 c("antiquewhite4","blue3","#08e8de"
+# colors 7 cols <- setNames(c("cadetblue","blue3","red2"),c("none", "partial", "complete")) 
+# colors 8 cols <- setNames(c("darkslategray3","darkblue","red2"),c("none", "partial", "complete")) 
+# colors 9 cols <- setNames(c("darkslategray3","blue3","red2"),c("none", "partial", "complete")) 
+# colors 10 cols <- setNames(c("lightblue3","blue3","red2"),c("none", "partial", "complete"))
+
+# deep red
