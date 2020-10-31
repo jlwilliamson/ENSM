@@ -1,0 +1,298 @@
+﻿Row_ID,Order_of_orders,Order_of_families,Order,Family,Scientific_Name,Common_name,Region,Mountain_Range,ENSM_population,LOWER LIMIT LOW  (LLL) ,UPPER LIMIT LOW  (ULL),LOWER LIMIT HIGH  (LLH),UPPER LIMIT HIGH  (ULH),COMPLETE ENSM MAGNITUDE (min that all Indivs shift),Upper Shift (ULH-ULL),Lower Shift (LLH-LLL),PARTIAL ENSM MAGNITUDE (min that some indivs shift),Complete ENSM? y/n ,Partial ENSM y/n,"Partial ENSM, excludes complete ENSM",Lower Limit Is,Upper Limit is,Breed High or Low?, Non-breeding Elev Range,Breeding Elev Range,latitudinal_migrant (yes=1; 0=no),partial_lat_migrant (yes=1; 0=no),partial_elev_migrant (yes=1; 0=no),References,GBIF DOI
+6,4,4,Gruiformes,Gruidae,Anthropoides virgo,Demoiselle Crane,Asia,Tibetan Plateau,,0,655,0,3000,-655,2345,0,2345,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.syatvs
+39,4,4,Gruiformes,Gruidae,Grus nigricollis,Black-necked Crane,Asia,Tibetan Plateau,,1375,3050,4000,4860,950,1810,2625,2625,no,yes,yes,Non-breeding ,Breeding,High,1375-3050,4360-4860,1,0,0,Dwyer et al. 1992; Grimmett et al. 1999; HBW,
+66,10,17,Passeriformes,Muscicapidae,Phoenicurus auroreus,Daurian Redstart,Asia,Tibetan Plateau,,0,2000,2800,3700,800,1700,2800,2800,no,yes,yes,Non-breeding ,Breeding,High,0-2000,2800-3700,1,1,0,HBW; Grimmett et al. 1999,https://doi.org/10.15468/dl.ki6vog
+1,7,10,Accipitriformes,Accipitridae,Accipiter nisus,Eurasian Sparrowhawk,Asia,Himalayas,Nepal,250,1450,2440,4200,990,2750,2190,2750,no,yes,yes,Non-breeding ,Breeding,High,250-1450,2440-4200,0,0,0,Grimmett et al. 1999,
+2,6,7,Charadriiformes,Scolopacidae,Actitis hypoleucos,Common Sandpiper,Asia,Himalayas,Pakistan,0,920,2285,3630,1365,2710,2285,2710,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.yitdcz
+3,10,20,Passeriformes,Fringillidae,Agraphospiza rubescens,Blanford's Rosefinch,Asia,Himalayas,India,1300,1800,3100,3800,1300,2000,1800,2000,no,yes,yes,Non-breeding ,Breeding,High,1300-1800,3100-3800,0,0,0,Grimmett et al. 1999; HBW,
+4,1,1,Anseriformes,Anatidae,Anser indicus,Bar-headed Goose ,Asia,Himalayas,Nepal ,150,150,5000,5000,4850,4850,4850,4850,yes,yes,no,Non-breeding ,Breeding,High,150,5000,1,0,0,Takekawa et al. 2009,
+5,1,1,Anseriformes,Anatidae,Anser indicus,Bar-headed Goose ,Asia,Himalayas,India,200,200,4800,4800,4600,4600,4600,4600,yes,yes,no,Non-breeding ,Breeding,High,200,4800,1,0,0,Takekawa et al. 2009,
+7,10,22,Passeriformes,Motacillidae,Anthus hodgsoni,Olive-backed Pipit,Asia,Himalayas,India,0,2000,2700,4000,700,2000,2700,2700,no,yes,yes,Non-breeding ,Breeding,High,0-2000,2700-4000,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.8cwwiy
+8,10,22,Passeriformes,Motacillidae,Anthus roseatus,Rosy Pipit,Asia,Himalayas,Nepal ,760,1500,4000,5050,2500,3550,3240,3550,yes,yes,no,Non-breeding ,Breeding,High,760-1500,4000-5050,1,0,0,HBW; Grimmett et al. 1999,
+9,10,22,Passeriformes,Motacillidae,Anthus trivialis,Tree Pipit,Asia,Himalayas,India,0,1450,2700,4200,1250,2750,2700,2750,no,yes,yes,Non-breeding ,Breeding,High,0-4511,3500-4811,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ob9tbp
+10,10,17,Passeriformes,Muscicapidae,Brachypteryx montana,White-browed Shortwing,Asia,Himalayas,Nepal,245,2375,2560,3660,185,1285,2315,2315,no,yes,yes,Non-breeding ,Breeding,High,245-2375,2560-3660,0,0,0,Grimmett et al. 1999,
+11,10,23,Passeriformes,Alaudidae,Calandrella acutirostris,Hume's Lark,Asia,Himalayas,India,105,300,2000,5000,1700,4700,1895,4700,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.uid38g
+13,10,20,Passeriformes,Fringillidae,Carpodacus erythrinus,Common Rosefinch,Asia,Himalayas,Nepal,275,2000,3350,4000,1350,2000,3075,3075,no,yes,yes,Non-breeding ,Breeding,High,275-2000,3350-4000,1,0,0,Grimmett et al. 1999,
+14,10,20,Passeriformes,Fringillidae,Carpodacus rhodochlamys,Red-mantled Rosefinch,Asia,Himalayas,Pakistan,300,2400,2700,3500,300,1100,2400,2400,no,yes,yes,Non-breeding ,Breeding,High,300-2400,2700-3500,0,0,1,Grimmett et al. 1999,
+15,10,20,Passeriformes,Fringillidae,Carpodacus rodochroa,Pink-browed Rosefinch,Asia,Himalayas,Nepal,915,3000,3050,3965,50,965,2135,2135,no,yes,yes,Non-breeding ,Breeding,High,915-3000,3050-3965,0,0,0,Grimmett et al. 1999,
+16,10,25,Passeriformes,Cettiidae,Cettia brunnifrons,Grey-sided Bush Warbler,Asia,Himalayas,Himalayas (Eastern),75,2200,2700,4115,500,1915,2625,2625,no,yes,yes,Non-breeding ,Breeding,High,75-2200,2700-4000,1,0,0,Grimmett et al. 1999,
+17,10,25,Passeriformes,Cettiidae,Cettia flavolivacea,Aberrant Bush Warbler,Asia,Himalayas,Nepal,915,1830,2440,3950,610,2120,1525,2120,no,yes,yes,Non-breeding ,Breeding,High,250-1830,2440-3950,0,0,0,Grimmett et al. 1999,
+18,10,25,Passeriformes,Cettiidae,Cettia major,Chestnut-crowned Bush Warbler,Asia,Himalayas,Nepal,90,250,3350,3680,3100,3430,3260,3430,yes,yes,no,Non-breeding ,Breeding,High,0-250,3550-3680,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ada6od
+19,10,17,Passeriformes,Muscicapidae,Chaimarrornis leucocephalus,White-capped Redstart,Asia,Himalayas,Nepal,915,1525,1830,5000,305,3475,915,3475,no,yes,yes,Non-breeding ,Breeding,High,,,0,0,0,Grimmett et al. 1999,
+20,10,17,Passeriformes,Muscicapidae,Chaimarrornis leucocephalus,White-capped Redstart,Asia,Himalayas,India,30,2880,1830,4880,-1050,2000,1800,2000,no,yes,yes,Non-breeding ,Breeding,High,,,0,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.t07foa
+21,6,8,Charadriiformes,Charadriidae,Charadrius mongolus,Lesser Sandplover,Asia,Himalayas,India,0,90,3900,5500,3810,5410,3900,5410,yes,yes,no,Non-breeding ,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.wjsinw
+22,10,20,Passeriformes,Fringillidae,Chloris spinoides,Yellow-breasted Greenfinch,Asia,Himalayas,India,240,1500,2100,3800,600,2300,1860,2300,no,yes,yes,Non-breeding ,Breeding,High,0-4512,3500-4812,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.q3hexv
+23,6,6,Charadriiformes,Laridae,Chroicocephalus brunnicephalus,Brown-headed Gull,Asia,Himalayas,India,0,780,3000,4500,2220,3720,3000,3720,yes,yes,no,Non-breeding ,Breeding,High,0-500,3000-4500,1,0,0,Lei et al. 2007; HBW; Grimmett et al. 1999,https://doi.org/10.15468/dl.keuqal
+27,2,2,Columbiformes,Columbidae,Columba rupestris,Hill Pigeon,Asia,Himalayas,India,260,4825,3000,5500,-1825,675,2740,2740,no,yes,yes,Non-breeding ,Breeding,High,,,0,0,0,HBW; Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.w5nsfo
+28,3,3,Cuculiformes,Cuculidae,Cuculus saturatus,Himalayan (Oriental) Cuckoo,Asia,Himalayas,India,0,1180,895,3515,-285,2335,895,2335,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ab4wd2
+29,10,24,Passeriformes,Hirundinidae,Delichon dasypus,Asian House Martin,Asia,Himalayas,cashmeriense (India),770,2660,1800,4800,-860,2140,1030,2140,no,yes,yes,Non-breeding ,Breeding,High,45-2660,1800-4800,0,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.vzwjbj
+30,10,24,Passeriformes,Hirundinidae,Delichon nipalense,Nepal House Martin,Asia,Himalayas,nipalense (India),300,2000,1000,4000,-1000,2000,700,2000,no,yes,yes,Non-breeding ,Breeding,High,300-2000,1000-4000,0,0,0,Grimmett et al. 1999,
+31,10,21,Passeriformes,Emberizidae,Emberiza cia,Rock Bunting,Asia,Himalayas,India,290,2100,2000,4200,-100,2100,1710,2100,no,yes,yes,Non-breeding ,Breeding,High,290-2100,2000-4200,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.8yajnd
+32,10,17,Passeriformes,Muscicapidae,Enicurus scouleri,Little Forktail,Asia,Himalayas,Nepal,900,1830,1830,4000,0,2170,930,2170,no,yes,yes,Non-breeding ,Breeding,High,900-1830,1830-4000,0,0,0,Grimmett et al. 1999,
+33,10,23,Passeriformes,Alaudidae,Eremophila alpestris,Horned Lark,Asia,Himalayas,longirostris (Pakistan),1500,3000,3300,5100,300,2100,1800,2100,no,yes,yes,Non-breeding ,Breeding,High,450-3000,3300-5100,1,1,0,Grimmett et al. 1999,
+34,9,12,Falconiformes,Falconidae,Falco subbuteo,Eurasian Hobby,Asia,Himalayas,India,0,390,1200,5100,810,4710,1200,4710,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.9sxtmg
+35,10,17,Passeriformes,Muscicapidae,Ficedula strophiata,Rufous-gorgeted Flycatcher,Asia,Himalayas,Nepal,245,2135,2440,3800,305,1665,2195,2195,no,yes,yes,Non-breeding ,Breeding,High,335-1800,2440-3800,1,1,0,Barve et al. 2016; HBW,
+36,10,17,Passeriformes,Muscicapidae,Ficedula superciliarus,Ultramarine Flycatcher,Asia,Himalayas,India,0,1765,2600,3200,835,1435,2600,2600,no,yes,yes,Non-breeding ,Breeding,High,150-1500,2600-3200,1,1,0,Barve et al. 2016; HBW; GBIF,https://doi.org/10.15468/dl.gyqoe9
+37,10,17,Passeriformes,Muscicapidae,Ficedula tricolor,Slaty-blue Flycatcher,Asia,Himalayas,Pakistan,460,1500,2600,3300,1100,1800,2140,2140,no,yes,yes,Non-breeding ,Breeding,High,0-4511,3500-4811,1,1,0,Grimmett et al. 1999,
+38,6,7,Charadriiformes,Scolopacidae,Gallinago nemoricola,Wood Snipe,Asia,Himalayas,,5,3000,3000,5000,0,2000,2995,2995,no,yes,yes,Non-breeding ,Breeding,High,0-3000,3000-5000,1,1,0,Grimmett et al. 1999; Khatiwada & Chaudhary 2008; GBIF,https://doi.org/10.15468/dl.mqvxfz
+40,10,17,Passeriformes,Muscicapidae,Hodgsonius phaenicuroides,White-bellied Redstart,Asia,Himalayas,Bhutan,305,610,2440,3960,1830,3350,2135,3350,no,yes,yes,Non-breeding ,Breeding,High,305-610,2440-3960,1,0,0,Grimmett et al. 1999,
+41,6,9,Charadriiformes,Ibidorhynchidae,Ibidorhyncha struthersii,Ibisbill,Asia,Himalayas,Bhutan,240,2250,2250,4480,0,2230,2010,2230,no,yes,yes,Non-breeding ,Breeding,High,240-2250,2250-4480,1,0,1,Grimmett et al. 1999,
+42,6,9,Charadriiformes,Ibidorhynchidae,Ibidorhyncha struthersii,Ibisbill,Asia,Himalayas,Nepal,315,915,3800,4200,2885,3285,3485,3485,yes,yes,no,Non-breeding ,Breeding,High,0-915,3800-4200,1,0,1,Grimmett et al. 1999,https://doi.org/10.15468/dl.cbae91
+43,8,11,Piciformes,Picidae,Jynx torquilla,Eurasian Wryneck,Asia,Himalayas,India,0,960,1500,3300,540,2340,1500,2340,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.o3wrei
+44,10,15,Passeriformes,Laniidae,Lanius tephronotus,Grey-backed Shrike,Asia,Himalayas,India,0,2295,2700,4575,405,2280,2700,2700,no,yes,yes,Non-breeding ,Breeding,High,,,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.0nhxn7
+45,10,15,Passeriformes,Laniidae,Lanius tephronotus,Grey-backed Shrike,Asia,Himalayas,Nepal,275,2560,2200,4575,-360,2015,1925,2015,no,yes,yes,Non-breeding ,Breeding,High,300-2500,2700-4500,1,1,0,Lu et al. 2010; HBW; Grimmett et al. 1999,
+46,10,20,Passeriformes,Fringillidae,Leucosticte brandti,Brandt's Mountain Finch,Asia,Himalayas,Himalayas,1500,5355,3660,4800,-1695,-555,2160,2160,no,yes,yes,Non-breeding ,Breeding,High,1500-5353,3660-4800,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ctohqj
+47,10,20,Passeriformes,Fringillidae,Leucosticte nemoricola,Plain Mountain Finch,Asia,Himalayas,Nepal,2000,3650,4200,5200,550,1550,2200,2200,no,yes,yes,Non-breeding ,Breeding,High,2000-3650,4200-5200,1,0,0,Grimmett et al. 1999,
+48,10,29,Passeriformes,Locustellidae,Locustella thoracica,Spotted Bush Warbler,Asia,Himalayas,India,0,195,3300,4350,3105,4155,3300,4155,yes,yes,no,Non-breeding ,Breeding,High,0-250,3350-3850,1,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.sf31n1
+49,10,29,Passeriformes,Locustellidae,Locustella thoracica,Spotted Bush Warbler,Asia,Himalayas,Nepal,0,250,3350,3850,3100,3600,3350,3600,yes,yes,no,Non-breeding ,Breeding,High,,,1,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.sf31n1
+50,10,17,Passeriformes,Muscicapidae,Luscinia pectoralis,Himalayan Rubythroat,Asia,Himalayas,Nepal,275,1340,3300,4800,1960,3460,3025,3460,no,yes,yes,Non-breeding ,Breeding,High,275-1340,3300-4800,0,0,0,Grimmett et al. 1999,
+51,10,17,Passeriformes,Muscicapidae,Luscinia svecica,Bluethroat,Asia,Himalayas,India,0,1080,2600,3800,1520,2720,2600,2720,no,yes,yes,Non-breeding ,Breeding,High,0-4505,3500-4805,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.0wqk1m
+52,10,17,Passeriformes,Muscicapidae,Monticola solitarius,Blue Rock Thrush,Asia,Himalayas,Nepal,90,1400,2590,4880,1190,3480,2500,3480,no,yes,yes,Non-breeding ,Breeding,High,0-4509,3500-4809,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.txt3wo
+53,10,22,Passeriformes,Motacillidae,Motacilla cinerea,Grey Wagtail,Asia,Himalayas,Nepal,365,1550,1110,3550,-440,2000,745,2000,no,yes,yes,Non-breeding ,Breeding,High,365-1550,1110-3550,1,0,0,Grimmett at al. 1999,
+54,10,22,Passeriformes,Motacillidae,Motacilla citreola,Citrine Wagtail,Asia,Himalayas,India,0,1010,3000,5000,1990,3990,3000,3990,no,yes,yes,Non-breeding ,Breeding,High,0-4513,3500-4813,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.tzo2g4
+55,10,17,Passeriformes,Muscicapidae,Muscicapella hodgsoni,Pygmy Blue Flycatcher,Asia,Himalayas,India,300,750,2135,3500,1385,2750,1835,2750,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.lnpm9l
+56,10,17,Passeriformes,Muscicapidae,Muscicapella hodgsoni,Pygmy Blue Flycatcher,Asia,Himalayas,Nepal,75,2375,2100,3500,-275,1125,2025,2025,no,yes,yes,Non-breeding ,Breeding,High,75-750,2100-3500,1,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.lnpm9l
+61,10,17,Passeriformes,Muscicapidae,Oenanthe deserti,Desert Wheatear,Asia,Himalayas,India,0,815,3000,5100,2185,4285,3000,4285,yes,yes,no,Non-breeding ,Breeding,High,0-4507,3500-4807,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.cnzkey
+62,10,17,Passeriformes,Muscicapidae,Oenanthe picata,Variable Wheatear,Asia,Himalayas,India,0,685,2160,4645,1475,3960,2160,3960,no,yes,yes,Non-breeding ,Breeding,High,0-4508,3500-4808,1,1,0,Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.lawmy6
+67,10,17,Passeriformes,Muscicapidae,Phoenicurus erythrogaster,White-winged Redstart,Asia,Himalayas,Pakistan,1750,2400,3900,5000,1500,2600,2150,2600,no,yes,yes,Non-breeding ,Breeding,High,1750-2400,3900-5000,0,0,0,Grimmett et al. 1999,
+68,10,17,Passeriformes,Muscicapidae,Phoenicurus erythrogaster,White-winged Redstart,Asia,Himalayas,Nepal,2650,3965,4900,5600,935,1635,2250,2250,no,yes,yes,Non-breeding ,Breeding,High,1750-2401,3900-5001,0,0,0,Grimmett et al. 1999,
+69,10,17,Passeriformes,Muscicapidae,Phoenicurus erythrogaster,White-winged Redstart,Asia,Himalayas,India,1525,4800,3600,5200,-1200,400,2075,2075,no,yes,yes,Non-breeding ,Breeding,High,1750-2402,3900-5002,0,0,0,Grimmett et al. 1999,
+70,10,17,Passeriformes,Muscicapidae,Phoenicurus frontalis,Blue-fronted Redstart,Asia,Himalayas,Nepal,1000,3050,3350,4900,300,1850,2350,2350,no,yes,yes,Non-breeding ,Breeding,High,1000-3050,3350-4900,0,0,0,Grimmett et al. 1999,
+71,10,17,Passeriformes,Muscicapidae,Phoenicurus ochruros,Black Redstart,Asia,Himalayas,phoenicuroides (India),0,1700,3300,5200,1600,3500,3300,3500,no,yes,yes,Non-breeding ,Breeding,High,100-1700,3300-5200,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ue6av4
+72,10,26,Passeriformes,Phylloscopidae,Phylloscopus affinis,Tickell's Leaf Warbler,Asia,Himalayas,Nepal,78,1190,2550,4800,1360,3610,2472,3610,no,yes,yes,Non-breeding ,Breeding,High,80-1190,2550-4800,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.cuwhwk
+73,10,26,Passeriformes,Phylloscopidae,Phylloscopus chloronotus,Lemon-rumped Leaf-warbler,Asia,Himalayas,Nepal,275,2750,2750,4000,0,1250,2475,2475,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,Grimmett et al. 1999,
+74,10,26,Passeriformes,Phylloscopidae,Phylloscopus chloronotus,Lemon-rumped Leaf-warbler,Asia,Himalayas,India,70,2100,2200,4200,100,2100,2130,2130,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.qulakw
+75,10,26,Passeriformes,Phylloscopidae,Phylloscopus fuligiventer,Smoky Warbler,Asia,Himalayas,Nepal,90,915,3900,5000,2985,4085,3810,4085,yes,yes,no,Non-breeding ,Breeding,High,?-915,3900-5000,1,0,0,Grimmett et al. 1999,https://doi.org/10.15468/dl.pij1rf
+76,10,26,Passeriformes,Phylloscopidae,Phylloscopus griseolus,Sulphur-bellied Warbler,Asia,Himalayas,India,0,1000,2400,4500,1400,3500,2400,3500,no,yes,yes,Non-breeding ,Breeding,High,0-1000,2400-4500,1,0,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.vzfqb4
+77,10,26,Passeriformes,Phylloscopidae,Phylloscopus humei,Hume's Leaf Warbler,Asia,Himalayas,Nepal,90,2135,3280,3980,1145,1845,3190,3190,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.ugnvk0
+78,10,26,Passeriformes,Phylloscopidae,Phylloscopus humei,Hume's Leaf Warbler,Asia,Himalayas,India,0,1800,2100,3600,300,1800,2100,2100,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.ugnvk0
+79,10,26,Passeriformes,Phylloscopidae,Phylloscopus pulcher,Buff-barred Warbler,Asia,Himalayas,Nepal,915,3050,3250,4300,200,1250,2335,2335,no,yes,yes,Non-breeding ,Breeding,High,915-3050,3250-4300,0,0,0,Grimmett et al. 1999,
+80,10,26,Passeriformes,Phylloscopidae,Phylloscopus pulcher,Buff-barred Warbler,Asia,Himalayas,India,500,2800,2800,4300,0,1500,2300,2300,no,yes,yes,Non-breeding ,Breeding,High,500-2800,2800-4300,0,0,0,Grimmett et al. 1999,
+81,10,26,Passeriformes,Phylloscopidae,Phylloscopus reguloides,Blyth's Leaf Warbler,Asia,Himalayas,India,0,1500,2000,3700,500,2200,2000,2200,no,yes,yes,Non-breeding ,Breeding,High,0-1500,2100-3200,1,0,0,Barve et al. 2016; HBW,https://doi.org/10.15468/dl.ke5wej
+82,10,26,Passeriformes,Phylloscopidae,Phylloscopus sindianus,Mountain Chiffchaff,Asia,Himalayas,India,200,2125,2500,4400,375,2275,2300,2300,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.79d1dr
+83,10,26,Passeriformes,Phylloscopidae,Phylloscopus trochiloides,Greenish Warbler,Asia,Himalayas,Nepal,75,1830,3000,4270,1170,2440,2925,2925,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.twmsgm
+84,10,26,Passeriformes,Phylloscopidae,Phylloscopus trochiloides,Greenish Warbler,Asia,Himalayas,India,0,2200,2700,4300,500,2100,2700,2700,no,yes,yes,Non-breeding,Breeding,High,,,1,0,0,HBW; Grimmett et al. 1999; Grimmett et al. 2014; GBIF,https://doi.org/10.15468/dl.twmsgm
+85,10,26,Passeriformes,Phylloscopidae,Phylloscopus tytleri,Tytler's Leaf Warbler,Asia,Himalayas,India,105,2610,2400,3600,-210,990,2295,2295,no,yes,yes,Non-breeding ,Breeding,High,0-4502,3500-4802,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.jpqhdm
+86,10,27,Passeriformes,Pnoepygidae,Pnoepyga albiventer,Scaly-breasted Wren Babbler,Asia,Himalayas,Himalayas (Eastern),700,2285,2745,3900,460,1615,2045,2045,no,yes,yes,Non-breeding ,Breeding,High,700-2285,2745-3900,0,0,0,Grimmett et al. 1999,
+87,10,19,Passeriformes,Prunellidae,Prunella strophiata,Rufous-breasted Accentor,Asia,Himalayas,India,425,3095,2700,4880,-395,1785,2275,2275,no,yes,yes,Non-breeding ,Breeding,High,213-4639,2700-5000,0,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.1t3hoh
+89,10,24,Passeriformes,Hirundinidae,Ptyonoprogne rupestris,Eurasian Crag Martin,Asia,Himalayas,India,0,2000,1200,4500,-800,2500,1200,2500,no,yes,yes,Non-breeding ,Breeding,High,0-2000,1200-4500,1,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.czzknt
+91,6,6,Charadriiformes,Laridae,Sterna hirundo,Common Tern,Asia,Himalayas,India,0,135,0,4750,-135,4615,0,4615,no,yes,yes,Non-breeding ,Breeding,High,0-1800,0-4752,0,0,0,Grimmett et al. 1999; HBW; GBIF,https://doi.org/10.15468/dl.7c7eom
+92,2,2,Columbiformes,Columbidae,Streptopelia orientalis,Oriental Turtle Dove,Asia,Himalayas,India,0,2450,0,4645,-2450,2195,0,2195,no,yes,yes,Non-breeding ,Breeding,High,,,1,0,0,Grimmett et al. 1999; Grimmett et al. 2014,https://doi.org/10.15468/dl.wbvk8s
+93,10,28,Passeriformes,Sylviidae,Sylvia althaea,Hume's Whitethroat,Asia,Himalayas,India,0,900,1500,3700,600,2800,1500,2800,no,yes,yes,Non-breeding ,Breeding,High,0-4503,3500-4803,1,1,0,Grimmett et al. 1999; GBIF,https://doi.org/10.15468/dl.ods8nd
+94,10,17,Passeriformes,Muscicapidae,Tarsiger chrysaeus,Golden Bush-robin,Asia,Himalayas,India,1400,2000,3000,4600,1000,2600,1600,2600,no,yes,yes,Non-breeding ,Breeding,High,1400-2000,3000-4600,0,0,0,HBW; Grimmett et al. 1999,
+95,10,17,Passeriformes,Muscicapidae,Tarsiger cyanurus,Orange-flanked Bush-robin,Asia,Himalayas,India,150,3000,2700,4400,-300,1400,2550,2550,no,yes,yes,Non-breeding ,Breeding,High,150-3000,2700-4400,0,0,0,Grimmett et al. 1999,
+96,10,17,Passeriformes,Muscicapidae,Tarsiger hyperythrus,Rufous-breasted Bush Robin,Asia,Himalayas,India,150,3500,3400,3800,-100,300,3250,3250,no,yes,yes,Non-breeding ,Breeding,High,150-3500,3400-3800,0,0,0,Grimmett et al. 1999,
+97,10,17,Passeriformes,Muscicapidae,Tarsiger rufilatus,Himalayan Bush-robin,Asia,Himalayas,India,1500,2100,3000,4400,900,2300,1500,2300,no,yes,yes,Non-breeding ,Breeding,High,1500-2100,3000-4400,1,0,0,Barve et al. 2016; HBW,
+98,10,25,Passeriformes,Cettiidae,Tesia castaneocoronata,Chestnut-headed Tesia,Asia,Himalayas,Nepal,800,1830,2135,4000,305,2170,1335,2170,no,yes,yes,Non-breeding ,Breeding,High,250-1830,2135-4000,0,0,0,Grimmett et al. 1999,
+99,10,18,Passeriformes,Tichodromidae,Tichodroma muraria,Wallcreeper,Asia,Himalayas,nepalensis (Pakistan),1200,2400,3600,4600,1200,2200,2400,2400,no,yes,yes,Non-breeding ,Breeding,High,1200-2400,2600-4600,1,0,0,Grimmett et al. 1999,
+102,6,7,Charadriiformes,Scolopacidae,Tringa totanus,Common Redshank,Asia,Himalayas,,0,1280,3300,5000,2020,3720,3300,3720,yes,yes,no,Non-breeding ,Breeding,High,0-915,3300-5000,1,0,0,Grimmett et al. 1999,https://doi.org/10.15468/dl.xpd3zr
+103,10,16,Passeriformes,Turdidae,Zoothera dauma,Scaly Thrush,Asia,Himalayas,India,5,1800,2100,3600,300,1800,2095,2095,no,yes,yes,Non-breeding ,Breeding,High,5-1800,2100-3600,1,0,0,Grimmett at al. 1999; GBIF,https://doi.org/10.15468/dl.xq74gr
+104,10,16,Passeriformes,Turdidae,Zoothera dauma,Scaly Thrush,Asia,Himalayas,Nepal,275,1500,2320,3300,820,1800,2045,2045,no,yes,yes,Non-breeding ,Breeding,High,275-1500,2320-3300,1,0,0,Grimmett at al. 1999,
+105,10,16,Passeriformes,Turdidae,Zoothera mollissima,Plain-backed Thrush,Asia,Himalayas,India,600,3600,2700,4300,-900,700,2100,2100,no,yes,yes,Non-breeding ,Breeding,High,600-3600,2700-4300,0,0,0,Grimmett at al. 1999,
+12,6,7,Charadriiformes,Scolopacidae,Calidris bairdii,Baird's Sandpiper,Nearctic-Neotropical,Andes,,0,400,2550,5000,2150,4600,2550,4600,yes,yes,no,Breeding,Non-breeding,Low,0-400,3500-4700,1,0,0,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007,
+24,6,6,Charadriiformes,Laridae,Chroicocephalus serranus,Andean Gull,South America,Andes,,0,5390,3000,5300,-2390,-90,3000,3000,no,yes,yes,Non-breeding ,Breeding,High,0,3000-4600,0,0,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007,https://doi.org/10.15468/dl.wbasug
+25,10,14,Passeriformes,Furnariidae,Cinclodes fuscus,Buff-winged Cinclodes,South America,Andes,Chile,0,1030,0,4410,-1030,3380,0,3380,no,yes,yes,Non-breeding ,Breeding,High,0-2584,0-3000,1,1,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; GBIF,https://doi.org/10.15468/dl.8jqnv4
+26,10,14,Passeriformes,Furnariidae,Cinclodes oustaleti,Gray-flanked Cinclodes,South America,Andes,Chile,0,1115,0,4000,-1115,2885,0,2885,no,yes,yes,Non-breeding ,Breeding,High,0-3600,2000-4200,1,1,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; GBIF,https://doi.org/10.15468/dl.zhlzsx
+57,10,13,Passeriformes,Tyrannidae,Muscisaxicola albilora,White-browed ground-tyrant,South America,Andes,,0,3920,2900,4200,-1020,280,2900,2900,no,yes,yes,Breeding,Non-breeding,Low,,,1,1,0,HBW; Jaramillo 2003; Schulenberg 2007; GBIF,https://doi.org/10.15468/dl.ep0kvz
+58,10,13,Passeriformes,Tyrannidae,Muscisaxicola capistrata,Cinnamon-bellied Ground-Tyrant,South America,Andes,,0,1500,1865,4830,365,3330,1865,3330,no,yes,yes,Breeding,Non-breeding,Low,3800-4100,0-450,1,0,0,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007; GBIF,https://doi.org/10.15468/dl.zikfxt
+59,10,13,Passeriformes,Tyrannidae,Muscisaxicola flavinucha,Ochre-naped Ground-Tyrant,South America,Andes,brevirostris,0,4500,3800,4900,-700,400,3800,3800,no,yes,yes,Breeding,Non-breeding,Low,3800-4900,500-1000,1,0,0,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007; GBIF,https://doi.org/10.15468/dl.ncvct9
+60,10,13,Passeriformes,Tyrannidae,Muscisaxicola rufivertex,Rufous-naped Ground-tyrant,South America,Andes,pallidiceps,300,1000,2200,4000,1200,3000,1900,3000,no,yes,yes,Non-breeding ,Breeding,High,300-1000,2200-4000,0,0,1,Stotz; HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007,
+63,6,8,Charadriiformes,Charadriidae,Oreopholus ruficollis,Tawny-throated Dotterel,South America,Andes,ruficollis ,0,485,3500,4600,3015,4115,3500,4115,yes,yes,no,Non-breeding ,Breeding,High,0-4568,3500-4600,1,1,1,HBW; Fjeldsa & Krabbe 1990; Schulenberg et al 2007; GBIF,https://doi.org/10.15468/dl.lwufp0
+64,5,5,Apodiformes,Trochilidae,Oreotrochilus leucopleurus,White-sided Hillstar,South America,Andes,Chile,500,2050,500,4410,-1550,2360,0,2360,no,yes,yes,Non-breeding ,Breeding,High,500-2050,1200-4400,1,0,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Herzog et al. 2003; GBIF,https://doi.org/10.15468/dl.yhftwy
+65,5,5,Apodiformes,Trochilidae,Patagona gigas,Giant Hummingbird,South America,Andes,gigas,0,2000,1790,4830,-210,2830,1790,2830,no,yes,yes,Breeding,Non-breeding,Low,2400-4100,0-2000,1,1,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007,https://doi.org/10.15468/dl.oq838p
+88,10,13,Passeriformes,Tyrannidae,Pseudocolopteryx acutipennis,Subtropical Doradito,South America,Andes,,0,700,2200,3550,1500,2850,2200,2850,no,yes,yes,Non-breeding ,Breeding,High,0-700,2200-3550,1,0,1,HBW; Schulenberg 2007; Fjeldsa and Krabbe 1990,https://doi.org/10.15468/dl.snlqnh
+90,6,7,Charadriiformes,Scolopacidae,Steganopus tricolor,Wilson's Phalarope,Nearctic-Neotropical,Andes,,0,2495,0,5000,-2495,2505,0,2505,no,yes,yes,Breeding,Non-breeding,Low,0-3420,2550-5000,1,0,1,"Parker et al. 19996; HBW, Colwell & Oring 1988; GBIF",https://doi.org/10.15468/dl.ivpede
+100,6,7,Charadriiformes,Scolopacidae,Tringa flavipes,Lesser Yellowlegs,Nearctic-Neotropical,Andes,,0,1530,0,4800,-1530,3270,0,3270,no,yes,yes,Breeding,Non-breeding,Low,0-4800,0-2488,1,0,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007; Ridgely & Greenfield 2001; GBIF,https://doi.org/10.15468/dl.izf3fi
+101,6,7,Charadriiformes,Scolopacidae,Tringa melanoleuca,Greater Yellowlegs,Nearctic-Neotropical,Andes,,0,1505,0,4800,-1505,3295,0,3295,no,yes,yes,Breeding,Non-breeding,Low,0-4800,0-3664,1,0,1,HBW; Fjeldsa & Krabbe 1990; Jaramillo 2003; Schulenberg 2007; Ridgely & Greenfield 2001; GBIF,https://doi.org/10.15468/dl.l5v7co
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
