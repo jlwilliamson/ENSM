@@ -14,7 +14,7 @@ Note that it only includes 91 of 92 ENSM species becuase Tarsiger rufilatus used
 
 Many thanks to Chauncey R. Gadek for initial code and help with tree files and data wrangling  
 
-Jessie personal note: see "ENSM_RadialPhylogenyFig_DataVersionNotes.txt" doc for notes on naming history and file versions (all versions provided here are updated/correct version).
+Jessie personal note: see "ENSM_RadialPhylogenyFig_DataVersionNotes.txt" doc for notes on naming history and file versions (all versions provided here are updated/correct version). 
 
 
 ------
