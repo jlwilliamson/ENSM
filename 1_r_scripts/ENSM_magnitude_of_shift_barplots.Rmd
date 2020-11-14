@@ -1,11 +1,19 @@
 ---
 title: "ENSM Magnitude of Shift Barplots"
 author: "Jessie Williamson"
-date: "4/7/2020"
-output: html_document
+date: "11/13/2020"
+output:
+  md_document:
+    variant: markdown_github
 ---
 
-Some quick calculations to generate magnitude of elevation shift barplots for the supplement (Figs S4-S5) of Williamson & Witt, 'Elevational niche-shift migration'.
+# Script associated with data wrangling, plots, and figures for Williamson & Witt, 'Elevational niche-shift migration'. This script inclues: 
+
+*Data wrangling used for basic ENSM calculations
+*Using data from Table S1 (complete database of ENSM taxa) to generate magnitude of shift bar plots (Figs S4-S5)
+*Using data from Table S2 (list of taxa that failed to qualify as ENSM) to generate magnitude of shift bar plots (Figure S7)
+*Code used to make Figure 4, seasonal elevational range and magnitudes of shift for all complete and partial ENSM taxa. 
+Some quick calculations to generate magnitude of elevation shift barplots for the ensmlement (Figs S4-S5) of 
 
 
 ---
@@ -31,76 +39,129 @@ library(gridExtra)
 library(dplyr)
 library(viridis)
 library(RColorBrewer)
+library(cowplot)
+library(forcats) # for releveling factors 
 ```
 
 
 # Read in data 
 ```{r}
-supp <- read.csv("/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/0_data_files/ENSM_Supplement_TableS1_FINAL.csv", header= TRUE)
-supp <- na.omit(supp) # no NAs in the data but weird lingering blank rows from reading in the csv; get rid of these
+ensm <- read.csv("/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/0_data_files/TableS1_ENSM_Supplement_Nov2020.csv", header= TRUE)
+#ensm <- na.omit(ensm) # no NAs in the data but weird lingering blank rows from reading in the csv; get rid of these
+ne <- read.csv("/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/0_data_files/TableS2_NonENSM_Supplement_Nov2020.csv", header= TRUE) # ne = non-ENSM
 ```
 
 
-# Clean and filter 
+# Clean and filter ENSM taxa data (Table S1)
 ```{r}
 # Drop columns you don't want 
-supp <- subset(supp, select = -c(Order_of_orders,
-                                 Order_of_families,
-                                 Lower.Limit.Is,
-                                 Upper.Limit.is,
-                                 Non.breeding.Elev.Range,
-                                 Breeding.Elev.Range,
-                                 References,
-                                 GBIF.DOI
+ensm <- subset(ensm, select = -c(order_of_orders,
+                                 order_of_families,
+                                 lower_limit_is,
+                                 upper_limit_is,
+                                 references,
+                                 gbif_doi
                                   ))
 
-# Rename terrible column names (poor planning on my part)
-colnames(supp) <- c("rowID","order","family","sciname","common_name", "region", "mtn_range", "ensm_pop", "LLL", "ULL", "LLH", "ULH", "complete_ensm_magnitude", "upper_shift", "lower_shift", "partial_ensm_magnitude", "completeYN", "partialYN", "partialYN_excludescomplete", "breeding_dir", "lat_migr", "partial_lat_migr", "partial_elev_migr")
-
 # Need to assign unique names to species that have multiple ENSM populations so plots below show all taxa 
-supp$unique_name <- paste(supp$sciname) # Create new unique name column that you'll customize 
-supp[supp$sciname=="Phoenicurus erythrogaster" & supp$ensm_pop=="Pakistan",][24] <- "Phoenicurus erythrogaster (Pakistan)"
-supp[supp$sciname=="Phoenicurus erythrogaster" & supp$ensm_pop=="Nepal",][24] <- "Phoenicurus erythrogaster (Nepal)"
-supp[supp$sciname=="Phoenicurus erythrogaster" & supp$ensm_pop=="India",][24] <- "Phoenicurus erythrogaster (India)"
-supp[supp$sciname=="Anser indicus" & supp$ensm_pop=="India",][24] <- "Anser indicus (India)"
-supp[supp$sciname=="Anser indicus" & supp$ensm_pop=="Nepal ",][24] <- "Anser indicus (Nepal)" # Weird space in Nepal 
-supp[supp$sciname=="Chaimarrornis leucocephalus" & supp$ensm_pop=="India",][24] <- "Chaimarrornis leucocephalus (India)"
-supp[supp$sciname=="Chaimarrornis leucocephalus" & supp$ensm_pop=="Nepal",][24] <- "Chaimarrornis leucocephalus (Nepal)" 
-supp[supp$sciname=="Ibidorhyncha struthersii" & supp$ensm_pop=="Bhutan",][24] <- "Ibidorhyncha struthersii (Bhutan)"
-supp[supp$sciname=="Ibidorhyncha struthersii" & supp$ensm_pop=="Nepal",][24] <- "Ibidorhyncha struthersii (Nepal)"
-supp[supp$sciname=="Lanius tephronotus" & supp$ensm_pop=="India",][24] <- "Lanius tephronotus (India)"
-supp[supp$sciname=="Lanius tephronotus" & supp$ensm_pop=="Nepal",][24] <- "Lanius tephronotus (Nepal)"
-supp[supp$sciname=="Locustella thoracica" & supp$ensm_pop=="India",][24] <- "Locustella thoracica (India)"
-supp[supp$sciname=="Locustella thoracica" & supp$ensm_pop=="Nepal",][24] <- "Locustella thoracica (Nepal)"
-supp[supp$sciname=="Muscicapella hodgsoni" & supp$ensm_pop=="India",][24] <- "Muscicapella hodgsoni (India)"
-supp[supp$sciname=="Muscicapella hodgsoni" & supp$ensm_pop=="Nepal",][24] <- "Muscicapella hodgsoni (Nepal)"
-supp[supp$sciname=="Phylloscopus chloronotus" & supp$ensm_pop=="India",][24] <- "Phylloscopus chloronotus (India)"
-supp[supp$sciname=="Phylloscopus chloronotus" & supp$ensm_pop=="Nepal",][24] <- "Phylloscopus chloronotus (Nepal)"
-supp[supp$sciname=="Phylloscopus humei" & supp$ensm_pop=="India",][24] <- "Phylloscopus humei (India)"
-supp[supp$sciname=="Phylloscopus humei" & supp$ensm_pop=="Nepal",][24] <- "Phylloscopus humei (Nepal)"
-supp[supp$sciname=="Phylloscopus pulcher" & supp$ensm_pop=="India",][24] <- "Phylloscopus pulcher (India)"
-supp[supp$sciname=="Phylloscopus pulcher" & supp$ensm_pop=="Nepal",][24] <- "Phylloscopus pulcher (Nepal)"
-supp[supp$sciname=="Phylloscopus trochiloides" & supp$ensm_pop=="India",][24] <- "Phylloscopus trochiloides (India)"
-supp[supp$sciname=="Phylloscopus trochiloides" & supp$ensm_pop=="Nepal",][24] <- "Phylloscopus trochiloides (Nepal)"
-supp[supp$sciname=="Zoothera dauma" & supp$ensm_pop=="India",][24] <- "Zoothera dauma (India)"
-supp[supp$sciname=="Zoothera dauma" & supp$ensm_pop=="Nepal",][24] <- "Zoothera dauma (Nepal)"
+# An easier way of doing this is as I did it below w/ paste0(), but I want to retain this formatting, so keeping it.
+ensm$unique_name <- paste(ensm$sciname) # Create new unique name column that you'll customize 
+ensm[ensm$sciname=="Phoenicurus erythrogaster" & ensm$ensm_pop=="Pakistan",][23] <- "Phoenicurus erythrogaster (Pakistan)"
+ensm[ensm$sciname=="Phoenicurus erythrogaster" & ensm$ensm_pop=="Nepal",][23] <- "Phoenicurus erythrogaster (Nepal)"
+ensm[ensm$sciname=="Phoenicurus erythrogaster" & ensm$ensm_pop=="India",][23] <- "Phoenicurus erythrogaster (India)"
+ensm[ensm$sciname=="Anser indicus" & ensm$ensm_pop=="India",][23] <- "Anser indicus (India)"
+ensm[ensm$sciname=="Anser indicus" & ensm$ensm_pop=="Nepal",][23] <- "Anser indicus (Nepal)" 
+ensm[ensm$sciname=="Chaimarrornis leucocephalus" & ensm$ensm_pop=="India",][23] <- "Chaimarrornis leucocephalus (India)"
+ensm[ensm$sciname=="Chaimarrornis leucocephalus" & ensm$ensm_pop=="Nepal",][23] <- "Chaimarrornis leucocephalus (Nepal)" 
+ensm[ensm$sciname=="Ibidorhyncha struthersii" & ensm$ensm_pop=="Bhutan",][23] <- "Ibidorhyncha struthersii (Bhutan)"
+ensm[ensm$sciname=="Ibidorhyncha struthersii" & ensm$ensm_pop=="Nepal",][23] <- "Ibidorhyncha struthersii (Nepal)"
+ensm[ensm$sciname=="Lanius tephronotus" & ensm$ensm_pop=="India",][23] <- "Lanius tephronotus (India)"
+ensm[ensm$sciname=="Lanius tephronotus" & ensm$ensm_pop=="Nepal",][23] <- "Lanius tephronotus (Nepal)"
+ensm[ensm$sciname=="Locustella thoracica" & ensm$ensm_pop=="India",][23] <- "Locustella thoracica (India)"
+ensm[ensm$sciname=="Locustella thoracica" & ensm$ensm_pop=="Nepal",][23] <- "Locustella thoracica (Nepal)"
+ensm[ensm$sciname=="Muscicapella hodgsoni" & ensm$ensm_pop=="India",][23] <- "Muscicapella hodgsoni (India)"
+ensm[ensm$sciname=="Muscicapella hodgsoni" & ensm$ensm_pop=="Nepal",][23] <- "Muscicapella hodgsoni (Nepal)"
+ensm[ensm$sciname=="Phylloscopus chloronotus" & ensm$ensm_pop=="India",][23] <- "Phylloscopus chloronotus (India)"
+ensm[ensm$sciname=="Phylloscopus chloronotus" & ensm$ensm_pop=="Nepal",][23] <- "Phylloscopus chloronotus (Nepal)"
+ensm[ensm$sciname=="Phylloscopus humei" & ensm$ensm_pop=="India",][23] <- "Phylloscopus humei (India)"
+ensm[ensm$sciname=="Phylloscopus humei" & ensm$ensm_pop=="Nepal",][23] <- "Phylloscopus humei (Nepal)"
+ensm[ensm$sciname=="Phylloscopus pulcher" & ensm$ensm_pop=="India",][23] <- "Phylloscopus pulcher (India)"
+ensm[ensm$sciname=="Phylloscopus pulcher" & ensm$ensm_pop=="Nepal",][23] <- "Phylloscopus pulcher (Nepal)"
+ensm[ensm$sciname=="Phylloscopus trochiloides" & ensm$ensm_pop=="India",][23] <- "Phylloscopus trochiloides (India)"
+ensm[ensm$sciname=="Phylloscopus trochiloides" & ensm$ensm_pop=="Nepal",][23] <- "Phylloscopus trochiloides (Nepal)"
+ensm[ensm$sciname=="Zoothera dauma" & ensm$ensm_pop=="India",][23] <- "Zoothera dauma (India)"
+ensm[ensm$sciname=="Zoothera dauma" & ensm$ensm_pop=="Nepal",][23] <- "Zoothera dauma (Nepal)"
+```
 
-# There is probably a faster more automated way to do this, but this keeps my text neat and just assigns pop-level 
-# designations to the taxa I need for plotting purposes 
 
-# Possible alternatives: 
-# Combine genus and species names instead
-#supp$unique_name <- paste(supp$sciname,supp$ensm_pop) # This looks messy, pastes everything 
+# Clean, filter, wrangle non-ENSM taxa data (Table S2; added for reference at request of AE)
+```{r}
+# Combine genus and species columns into a 'sciname' column 
+ne$sciname <- paste0(ne$genus, " ", ne$species) # Combine genus and species cols into one 
 
-# Insert underscores all species names 
-#supp$unique_name <- gsub(" ", "_", supp$unique_name)
+# Now create unique_name by combining sciname with ensm_pop (necessary to plot all discrete taxa)
+# Note: some are long and clunky because this file is a relict file, added at AE request to supplement 
+ne$unique_name <- paste0(ne$sciname, "-", ne$ensm_pop) # Combine genus and species cols into one
+```
+
+
+# Calculations of ENSM ranges and magnitudes of elevational shift 
+Note: These were originally done in Excel for the published manuscript, but because tabulations in Excel are bad practice and make it hard to reproduce analyses, I've re-calculated them here.
+```{r}
+# Magnitude of shift for complete ENSM taxa 
+ensm$complete.mag <- ensm$LLH-ensm$ULL 
+
+# If complete magnitude of shift is <2,000 m, insert NA 
+for (i in 1:nrow(ensm)){
+ if(ensm$complete.mag[i] < 2000){
+ ensm$complete.mag[i] <- NA
+ }
+}
+
+# Calculate upper and lower shifts 
+ensm$upper.shift <- ensm$ULH-ensm$ULL
+ensm$lower.shift <- ensm$LLH-ensm$LLL
+
+# Magnitude of shift for partial ENSM taxa
+# ensm$partial.mag <- NA # instantiate 
+
+library(dplyr)
+ensm <- ensm %>% mutate(partial.mag=pmax(upper.shift,lower.shift))  
+
+# Fill NAs for all 'partial magnitudes' for all complete ENSM taxa (for clarity, really)
+# A loop or dplyr line would be a much better way to do this, but I couldn't quite get syntax so going for quick n dirty. 
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Anser indicus",][, "partial.mag"] <- NA 
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Cettia major",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Ibidorhyncha struthersii",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Anthus roseatus",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Locustella thoracica",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Chroicocephalus brunnicephalus",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Tringa totanus",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Phylloscopus fuligiventer",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Oreopholus ruficollis",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Oenanthe deserti",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Calidris bairdii",][, "partial.mag"] <- NA
+ensm[ensm$completeYN=="yes" & ensm$sciname=="Charadrius mongolus",][, "partial.mag"] <- NA
+
+# Make a combined magnitude of shift column for both complete and partial (mostly for plots below)
+ensm <- ensm %>% mutate(combined.mag = coalesce(complete.mag, partial.mag)) 
+
+# Now write over completeYN and partialYN
+# If complete, can partial also be true? Figure this out.
+
+# Drop relict excel column calculations in favor of R-generated ones
+ensm <- subset(ensm, select = -c(complete_ensm_magnitude,
+                                 upper_shift, 
+                                 lower_shift,  
+                                 partial_ensm_magnitude
+                                  ))
 ```
 
 
 # subset by complete and partial ENSM 
 ```{r}
-complete <- supp[which(supp$completeYN == "yes"), ] # complete ENSM only; 14 taxa 
-partial <- supp[which(supp$partialYN_excludescomplete == "yes"), ] # partial ENSM only; 91 taxa 
+complete <- ensm[which(ensm$completeYN == "yes"), ] # complete ENSM only; 14 taxa 
+partial <- ensm[which(ensm$partialYN == "yes"), ] # partial ENSM only; 91 taxa 
 ```
 
 
@@ -111,13 +172,13 @@ Summary statistics for the paper
 # By boot, I mean 'dplyr::summarise'
 
 # Summarize by ENSM species   
-ensm.species.summary <- supp %>% group_by(sciname) %>% dplyr::summarise(pop_count=length(sciname)); ensm.species.summary
+ensm.species.summary <- ensm %>% group_by(sciname) %>% dplyr::summarise(pop_count=length(sciname)); ensm.species.summary
 # A list of 92 total ENSM species 
 # The second column "pop_count" lists the total # of identified ENSM populations 
 sum(duplicated(ensm.species.summary[, c("sciname")])) # Verify no duplicate records under binomial name 
 
 # Summarize by ENSM species by order  
-ensm.speciesbyorder.summary <- supp %>% group_by(order) %>% dplyr::summarise(pop_count=length(sciname)); ensm.speciesbyorder.summary # All 10 orders represented 
+ensm.speciesbyorder.summary <- ensm %>% group_by(order) %>% dplyr::summarise(pop_count=length(sciname)); ensm.speciesbyorder.summary # All 10 orders represented 
 # The second column "pop_count" lists the total # of identified ENSM populations per order
 
 # Now summarize ENSM species x order 
@@ -126,7 +187,7 @@ ensm.speciesbyorder.summary <- supp %>% group_by(order) %>% dplyr::summarise(pop
 # # sum(ensm.speciesbyorder.summary2$total) 
  
 # Summarize by ENSM species by family  
-ensm.speciesbyfam.summary <- supp %>% group_by(sciname, family) %>% dplyr::summarise(pop_count=length(sciname)); ensm.speciesbyfam.summary
+ensm.speciesbyfam.summary <- ensm %>% group_by(sciname, family) %>% dplyr::summarise(pop_count=length(sciname)); ensm.speciesbyfam.summary
 # The second column "pop_count" lists the total # of identified ENSM populations
 
 # Now sum families 
@@ -134,87 +195,81 @@ ensm.speciesbyfam.summary2 <- ensm.speciesbyfam.summary %>% group_by(family) %>%
 # This gives total number of SPECIES per order 
 sum(ensm.speciesbyfam.summary2$total) # All 92 species of 29 families accounted for
 
-
 # # ENSM taxon count (this should just be 105)
-#ENSM.taxon.count <- supp %>% group_by(common_name) %>% summarise(count=length(common_name)); ENSM.taxon.count
+#ENSM.taxon.count <- ensm %>% group_by(common_name) %>% summarise(count=length(common_name)); ENSM.taxon.count
 
 # breed high 
-breed.direction <- supp %>% group_by(breeding_dir) %>% dplyr::summarise(count=length(breeding_dir)); breed.direction
+breed.direction <- ensm %>% group_by(breeding_dir) %>% dplyr::summarise(count=length(breeding_dir)); breed.direction
 # 97 breed high, 8 breed low 
 
 # latitudinal migrants
-lat.migrants <- supp %>% group_by(lat_migr) %>% dplyr::summarise(count=length(lat_migr)); lat.migrants
+lat.migrants <- ensm %>% group_by(lat_migrant) %>% dplyr::summarise(count=length(lat_migrant)); lat.migrants
 # 76 latitudinal migrants
 # 29 taxa that do not also migrate latitudinally 
 
 # partial latitudinal migrants
-partial.lat.migrants <- supp %>% group_by(partial_lat_migr) %>% dplyr::summarise(count=length(partial_lat_migr)); partial.lat.migrants
+partial.lat.migrants <- ensm %>% group_by(partial_lat_migrant) %>% dplyr::summarise(count=length(partial_lat_migrant)); partial.lat.migrants
 # 22 partial latitudinal migrants
 # 83 taxa not partial latitudinal migrants 
 
 # partial elevational migrants
-partial.elev.migrants <- supp %>% group_by(partial_elev_migr) %>% dplyr::summarise(count=length(partial_elev_migr)); partial.elev.migrants
+partial.elev.migrants <- ensm %>% group_by(partial_elev_migrant) %>% dplyr::summarise(count=length(partial_elev_migrant)); partial.elev.migrants
 # 14 partial elevational migrants
 # 91 taxa not partial elevational migrants 
 
-
 # partial elevational AND partial latitudinal migrants
-partial.elevlat.migrants <- supp %>% group_by(partial_elev_migr, partial_lat_migr) %>% dplyr::summarise(count=length(partial_elev_migr)); partial.elevlat.migrants
+partial.elevlat.migrants <- ensm %>% group_by(partial_elev_migrant, partial_lat_migrant) %>% dplyr::summarise(count=length(partial_elev_migrant)); partial.elevlat.migrants
 # 73 taxa are neither partial elevational or partial latitudinal migrants 
 # 18 taxa are partial latitudinal migrants but NOT partial elevational migrants
 # 10 taxa are partial elevational migrants but NOT partial latitudinal migrants
 # 4 taxa are both partial elevational migrants AND partial latitudinal migrants 
 
-
 # complete ENSM latitudinal migration summary 
-complete.lat.sum <- supp %>% group_by(completeYN, lat_migr) %>% dplyr::summarise(count=length(lat_migr)); complete.lat.sum
+complete.lat.sum <- ensm %>% group_by(completeYN, lat_migrant) %>% dplyr::summarise(count=length(lat_migrant)); complete.lat.sum
 # What this is saying: 
 # of the 14 complete ENSM taxa, all are also latitudinal migrants (so 14 complete ENSM, 14 lat)
 # of non-complete ENSM: 62 are also latitudinal migrants
 # of non-complete ENSM: 29 do not migrate latitudinally 
 
 # Another way to confirm complete.lat.sum: partial ENSM lat migration summary 
-partial.lat.sum <- supp %>% group_by(partialYN_excludescomplete, lat_migr) %>% dplyr::summarise(count=length(lat_migr)); partial.lat.sum
+partial.lat.sum <- ensm %>% group_by(partialYN, lat_migrant) %>% dplyr::summarise(count=length(lat_migrant)); partial.lat.sum
 
 # partial ensm and partial latitudinal migration comparison
-partialensm.partiallat <- partial %>% group_by(partial_lat_migr) %>% dplyr::summarise(count=length(partial_lat_migr)); partialensm.partiallat
+partialensm.partiallat <- partial %>% group_by(partial_lat_migrant) %>% dplyr::summarise(count=length(partial_lat_migrant)); partialensm.partiallat
 # 20 partial ENSM are also partial latitudinal migrants
 # 71 partial ENSM are not partial latitudinal migrants 
 
 # complete ensm and partial latitudinal migration comparison
-completeensm.partiallat <- complete %>% group_by(partial_lat_migr) %>% dplyr::summarise(count=length(partial_lat_migr)); completeensm.partiallat
+completeensm.partiallat <- complete %>% group_by(partial_lat_migrant) %>% dplyr::summarise(count=length(partial_lat_migrant)); completeensm.partiallat
 # 2 complete ENSM are also partial latitudinal migrants
 # 12 complete ENSM are NOT partial latitudinal migrants
 
-
 # Region summary
-region.summary <- supp %>% group_by(region) %>% dplyr::summarise(count=length(region)); region.summary
+region.summary <- ensm %>% group_by(region) %>% dplyr::summarise(count=length(region)); region.summary
 # 90 Asia
 # 4 Nearctic-Neotropical
 # 11 South America 
 
 # Family summary
-family.summary <- supp %>% group_by(family) %>% dplyr::summarise(count=length(family)); family.summary
+family.summary <- ensm %>% group_by(family) %>% dplyr::summarise(count=length(family)); family.summary
 family.summary <- family.summary[with(family.summary, order(-count)), ]; family.summary # Sort in descending order
 # 29 families with counts of # taxa per family 
 # Top families: Muscicapidae (n=25), Phylloscopidae (n=14), Fringillidae (n=7), Scolopacidae (n=7)
 
 # Order summary
-order.summary <- supp %>% group_by(order) %>% dplyr::summarise(count=length(order)); order.summary
+order.summary <- ensm %>% group_by(order) %>% dplyr::summarise(count=length(order)); order.summary
 order.summary <- order.summary[with(order.summary, order(-count)), ]; order.summary # Sort in descending order
 # 10 orders with counts of # taxa per family 
 # Top orders: Passeriformres (n=79), Charadriiformes (n=14)
 
-
 # Mountain range summary 
-mtn.range.summary <- supp %>% group_by(mtn_range) %>% dplyr::summarise(count=length(mtn_range)); mtn.range.summary
+mtn.range.summary <- ensm %>% group_by(mtn_range) %>% dplyr::summarise(count=length(mtn_range)); mtn.range.summary
 # 15 Andes 
 # 87 Himalayas
 # 3 Tibetan Plateau 
 
-
 # Region summary
-region.breeding.summary <- supp %>% group_by(region, breeding_dir) %>% 
+region.breeding.summary <- ensm %>% group_by(region, breeding_dir) %>% 
                            dplyr::summarise(count=length(region)); region.breeding.summary
 # 90 taxa breed high in the Himalayas
 # 4 taxa breed low Nearctic-Neotropical 
@@ -222,23 +277,22 @@ region.breeding.summary <- supp %>% group_by(region, breeding_dir) %>%
 # This means only 8 total taxa breed low of 105
 
 # Mountain range + breeding summary 
-mtn.range.breeding.summary <- supp %>% group_by(mtn_range, breeding_dir) %>% 
+mtn.range.breeding.summary <- ensm %>% group_by(mtn_range, breeding_dir) %>% 
                                    dplyr::summarise(count=length(mtn_range)); mtn.range.breeding.summary
 # Nice table of breeding direction (high or low and mountain range)
 
 # Breeding dir summary
-breeding.dir.summary <- supp %>% group_by(breeding_dir) %>% 
+breeding.dir.summary <- ensm %>% group_by(breeding_dir) %>% 
                            dplyr::summarise(count=length(region)); breeding.dir.summary
 # 97 taxa breed high 
 # 8 taxa breed low
 ```
 For testing of sorting:
-test <- supp %>% group_by(sciname, ensm_pop) %>% dplyr::summarise(pop_count=length(sciname)); ensm.species.summary
+test <- ensm %>% group_by(sciname, ensm_pop) %>% dplyr::summarise(pop_count=length(sciname)); ensm.species.summary
 
 
 # Color palettes 
 ```{r}
-
 # a 3-color palette for complete ENSM taxa 
 complete_colors <- c( "#D32F2F", # Anseriformes
                       "#03A9F4", # Charadriiformes
@@ -256,6 +310,20 @@ partial_colors <- c( "#009688", # Accipitriformes
                       "#9E9E9E", # Passeriformes  #8C847B
                       "#FFEB3B" # Piciformes
                             )
+
+# a 11-color palette for non-ENSM taxa 
+ne_colors <- c(  "#009688", # Accipitriformes
+                      "#D32F2F", # Anseriformes
+                      "#8BC34A", # Apodiformes
+                      "#03A9F4", # Charadriiformes
+                      "#FF4081", # Columbiformes
+                      "#9C27B0", # Cuculiformes
+                      "plum1",   # Galliformes
+                      "#9E9E9E", # Passeriformes  #8C847B
+                      "#B2EBF2", # Pelecaniformes 
+                      "#FFEB3B", # Podicipediformes
+                      "coral4"   # "Psittaciformes"
+                            )
 ```
 
 
@@ -263,10 +331,10 @@ partial_colors <- c( "#009688", # Accipitriformes
 # Figure S4: Summary of elevational magnitudes - complete ENSM
 ```{r}
 #sort by complete ENSM magnitude (descending)
-complete <- complete[with(complete,order(-complete_ensm_magnitude)), ]
+#complete <- complete[with(complete, order(-complete.mag)), ] # Don't think I need this if calling reorder() in plot
 
 # Magnitude of shift of complete ENSM taxa
-p1<- ggplot(data=complete, aes(x=reorder(unique_name, -complete_ensm_magnitude), y=complete_ensm_magnitude, fill=order)) +
+p1<- ggplot(data=complete, aes(x=reorder(unique_name, -complete.mag), y=complete.mag, fill=order)) +
 # x=reorder is saying "reorder common_name on x-axis by magnitude of elev shift in DESCENDING"
      geom_bar(stat="identity", position=position_dodge()) +
 #     scale_fill_viridis(option="D", discrete=TRUE) + # Option=A specifies "magma", B=inferno, C=Plasma, D=viridis
@@ -288,10 +356,10 @@ ggsave(p1, filename="FigS4_CompleteENSM_RankedMagnitude_ElevShift.pdf", height=7
 # Figure S5: Summary of elevational magnitudes - partial ENSM
 ```{r}
 #sort by complete ENSM magnitude (descending)
-partial <- partial[with(partial,order(-partial_ensm_magnitude)), ]
+#partial <- partial[with(partial, order(-partial.mag)), ] # Don't think I need this if calling reorder() in plot
 
 # Magnitude of shift of partial ENSM taxa
-p2 <- ggplot(data=partial, aes(x=reorder(unique_name, -partial_ensm_magnitude), y=partial_ensm_magnitude, fill=order)) +
+p2 <- ggplot(data=partial, aes(x=reorder(unique_name, -partial.mag), y=partial.mag, fill=order)) +
 # x=reorder is saying "reorder common_name on x-axis by magnitude of elev shift in DESCENDING"
     #  scale_fill_viridis(option="C", discrete=TRUE) + # Option=A specifies "magma", B=inferno, C=Plasma, D=viridis
       scale_fill_manual(values=partial_colors) +
@@ -317,4 +385,183 @@ I answered this above, but here's a base R workaround:
 Why is this weirdly plotting without ranking by magnitudes of shift ???
 Chauncey's fix for this:
 barplot(partial[order(partial[,18],decreasing=TRUE),][,18],names.arg=partial[order(partial[,18],decreasing=TRUE),][,7])
+
+
+# Figure S7: Summary of elevational magnitudes for non-ENSM taxa 
+This list of taxa that failed to qualify as ENSM (magnitude of shift <2,000 m) was requested by the Associate Editor during review in Nov 2020. 
+```{r}
+#sort by complete ENSM magnitude (descending)
+#partial <- partial[with(partial, order(-partial.mag)), ] # Don't think I need this if calling reorder() in plot
+
+# Magnitude of shift of partial ENSM taxa 
+p3 <- ggplot(data=ne, aes(x=reorder(unique_name, -partial_ensm_magnitude), y=partial_ensm_magnitude, fill=order)) +
+        # x=reorder is saying "reorder common_name on x-axis by magnitude of elev shift in DESCENDING"
+        #  scale_fill_viridis(option="C", discrete=TRUE) + # Option=A specifies "magma", B=inferno, C=Plasma, D=viridis
+      scale_fill_manual(values=ne_colors) +
+      geom_bar(stat="identity", position=position_dodge()) +
+      theme(axis.text.x=element_text(angle=45, hjust=1),
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            panel.background = element_blank()) +
+      labs(title="Taxa that failed to qualify as ENSM (magnitude of shift <2,000 m)",x="", 
+           y = "Magnitude of Elevational Shift (m)") +
+      theme(plot.title = element_text(face="bold")) + # This makes panel header bold 
+       # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
+      theme(axis.text.y=element_text(size=14), axis.text.x=element_text(size=6), axis.title=element_text(size=12))
+print(p3)
+ggsave(p3, filename="FigS7_non-ENSM_RankedMagnitude_ElevShift.pdf", height=7, width=9, units="in")
+
+# Note: common_names NEED to have region-specific designation as underscores (e.g. "India", "Nepal", etc.)
+# If they don't, ggplot will think multiple populations should be plotted on top of each other, which puts bars out of order
+```
+
+
+# Re-level 'unique_name' of ENSM taxa (for seasonal elevational distribution and shift plots)
+```{r}
+# Add 'plot.order' row ID numbers to be able to sort properly
+# Re-leveling factor of unique_name was best way to solve geom_point undoing descending sort from ggplot() 
+
+# Complete ENSM taxa 
+complete <- complete[with(complete, order(-complete.mag)), ] # Sort in descending order 
+complete$plot.order <- 1:nrow(complete) # Add row ID #s for descending order sort 
+complete <- complete %>% mutate(unique_name = fct_reorder(unique_name, plot.order)) # now relevel based on plot.order 
+levels(complete$unique_name) # check that releveling worked 
+
+# Partial ENSM taxa 
+partial <- partial[with(partial, order(-partial.mag)), ] # Sort in descending order 
+partial$plot.order <- 1:nrow(partial) # Add row ID #s for descending order sort 
+partial <- partial %>% mutate(unique_name = fct_reorder(unique_name, plot.order)) # now relevel based on plot.order 
+levels(partial$unique_name) # check that releveling worked 
+
+# Re-combine data to retain proper plot order for magnitude of seasonal elev change
+ensm <- rbind(complete, partial) # rbind these back together to retain proper sort 
+ensm$plot.order <- 1:nrow(ensm) # write over plot.order to have this be continuous, 1-105
+ensm <- ensm %>% mutate(unique_name = fct_reorder(unique_name, plot.order)) # now relevel based on plot.order 
+levels(ensm$unique_name) # order is correct
+```
+
+
+# Figure 4: Plot of seasonal elevational distributions and magnitudes of shift for ENSM taxa. 
+```{r}
+# Complete and partial ENSM taxa combined 
+Fig4 <- ggplot(data=ensm, aes(x=unique_name, ymin=LLL, ymax=ULL)) + 
+          # Add fill=Clade to color by clade; reorder sorts in descending order based on magnitude of shift
+   #   annotate(geom="rect", xmin=1, xmax=14, ymin=0, ymax=5500, alpha=0.3, fill="tan") + # highlight complete ENSM
+      geom_errorbar(aes(ymin=LLL, ymax=ULL), width=0.0, size=1.8, alpha=0.5, color="red1") + 
+      geom_errorbar(aes(ymin=LLH, ymax=ULH), width=0.0, size=1.8, alpha=0.5, color="mediumblue") +
+      geom_vline(xintercept=14.5, linetype="longdash", size=0.4) +
+          # geom_errorbar specifies exact elev range; width controls error bar caps, size controls  bar thickness 
+      geom_point(data=ensm[ensm$breeding_dir=="Low",], aes(y=ULH+500, x=unique_name), # Plot purple triangles for low breeders
+            shape=24, fill="goldenrod1", color="goldenrod1", alpha=0.8, size=1.5) +
+      geom_point(data=ensm[ensm$unique_name=="Anser indicus (Nepal)",], aes(y=LLL, x=unique_name), # LLL for BHGO Nepal
+            shape=16, color="red1", alpha=0.6, size=2.0) +
+      geom_point(data=ensm[ensm$unique_name=="Anser indicus (Nepal)",], aes(y=ULH, x=unique_name), # ULH for BHGO Nepal 
+            shape=16, color="mediumblue", alpha=0.6, size=2.0) +
+      geom_point(data=ensm[ensm$unique_name=="Anser indicus (India)",], aes(y=LLL, x=unique_name), # LLL for BHGO India
+            shape=16, color="red1", alpha=0.6, size=2.0) +
+      geom_point(data=ensm[ensm$unique_name=="Anser indicus (India)",], aes(y=ULH, x=unique_name), # ULH for BHGO India 
+            shape=16, color="mediumblue", alpha=0.6, size=2.0) +
+      scale_y_continuous(limits=c(0,5500), breaks=c(0,1000,2000,3000,4000,5000)) +
+      theme_classic() +     
+      theme(axis.text.x=element_text(angle=45, hjust=1.0)) + 
+          # ggtitle("(a)") + 
+      theme(plot.title.position="plot", plot.title = element_text(face="bold")) + 
+          # parameter "plot" specifies that you want "title" flush with y-axis; bold face makes panel header bold 
+          # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
+      labs(x="", y = "Seasonal Elevational Range (m)") + 
+      theme(plot.margin = unit(c(0.2,0.2,0,0.2), "cm")) +  # top, right, bottom, left
+          # These plot margins are crucial for making the 4-panel figure work w/ no text cut off 
+      theme(axis.text.y=element_text(size=10), axis.text.x=element_text(size=7, face="italic"), axis.title=element_text(size=10))
+print(Fig4)
+
+ggsave(Fig4, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Figure4_SeasonalElevRange&Shifts_11-13-20.pdf", height=5.5, width=9, units="in") 
+# Max width of 7 inches for a 2-column figure in the Auk (1-column figure is 3.5 inches)
+
+# Firebrick1 and gold1 also looks good, makes a nice orange where they meet, though it's a little hard to see
+# Red and blue theme is best because the purple overlap is more visible. 
+```
+
+Some notes about this plot: Syntax was a bit tricky because I wanted to rank by descending magnitude of shift (first complete ENSM taxa, then partial ENSM taxa). I began my making mini subsets of extra symbols I wanted to plot over the main geom_error bar plots, but each time I did this my re-leveled order was undone. In the end, I used square brackets to call conditions of interest from the main datasets I plotted from, which retained proper factor order along the x-axis. 
+
+
+# Figure 4 two-panel alternative (not in manuscript) - plot of seasonal elevational distributions and magnitudes of elev shift.
+This plot has older colors and symbols because I didn't end up using it. Aesthetics would need to be tweaked if I did want to use it in the text. 
+```{r}
+# PLOTS - 2-panel fig.
+t1 <- ggplot(data=complete, aes(x=unique_name, ymin=LLL, ymax=ULL)) + 
+            # Add fill=Clade to color by clade; reorder sorts in descending order based on magnitude of shift 
+            # I had aes(x=reorder(unique_name, -complete.mag) but this was undone by adding geom_points; instead, I releveled
+      geom_errorbar(aes(ymin=LLL, ymax=ULL), width=0.0, size=10.0, alpha=0.5, color="firebrick1") + 
+      geom_errorbar(aes(ymin=LLH, ymax=ULH), width=0.0, size=10.0, alpha=0.5, color="gold1") +
+            # Specifies exact elev range; width controls error bar caps, size controls  bar thickness 
+      geom_point(data=complete[complete$breeding_dir=="Low",], aes(y=ULH+500, x=unique_name), # purple triangle for low breeders
+            shape=25, fill="darkorchid", color="darkorchid", alpha=0.8, size=2.6) +
+      geom_point(data=complete[complete$unique_name=="Anser indicus (Nepal)",], aes(y=LLL, x=unique_name), # LLL for BHGO Nepal
+            shape=16, color="firebrick1", alpha=0.6, size=2.8) +
+      geom_point(data=complete[complete$unique_name=="Anser indicus (Nepal)",], aes(y=ULH, x=unique_name), # ULH for BHGO Nepal 
+            shape=16, color="gold1", alpha=0.6, size=2.8) +
+      geom_point(data=complete[complete$unique_name=="Anser indicus (India)",], aes(y=LLL, x=unique_name), # LLL for BHGO India
+            shape=16, color="firebrick1", alpha=0.6, size=2.8) +
+      geom_point(data=complete[complete$unique_name=="Anser indicus (India)",], aes(y=ULH, x=unique_name), # ULH for BHGO India 
+            shape=16, color="gold1", alpha=0.6, size=2.8) +
+      scale_y_continuous(limits=c(0,5500), breaks=c(0,1000,2000,3000,4000,5000)) +
+      theme_classic() +     
+      theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1.0)) + 
+      ggtitle("(a)") + 
+      theme(plot.title.position="plot", plot.title = element_text(face="bold")) + 
+          # parameter "plot" specifies that you want "title" flush with y-axis; bold face makes panel header bold 
+          # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
+      labs(x="", y = "Seasonal Elevational \n Range (m)") + 
+      theme(plot.margin = unit(c(0.2,0.2,0,0.2), "cm")) +  # top, right, bottom, left
+          # These plot margins are crucial for making the 4-panel figure work w/ no text cut off 
+      theme(axis.text.y=element_text(size=10), axis.text.x=element_text(size=10), axis.title=element_text(size=10))
+print(t1)
+
+# partial ENSM Species elevational ranges in order of phylogeny 
+t2 <- ggplot(data=partial, aes(x=unique_name, ymin=LLL, ymax=ULL)) + 
+        # Add fill=group to color by group; reorder sorts in descending order based on magnitude of shift 
+        # I had aes(x=reorder(unique_name, -complete.mag) but this was undone by adding geom_points; instead, I releveled
+      geom_errorbar(aes(ymin=LLL, ymax=ULL), width=0.0, size=3.4, alpha=0.6, color="firebrick1") + 
+      geom_errorbar(aes(ymin=LLH, ymax=ULH), width=0.0, size=3.4, alpha=0.6, color="gold1") + 
+          # Specifies exact elev range; width controls error bar caps (keep size at 4.1 for slight space between bars)
+      geom_point(data=partial[partial$breeding_dir=="Low",], aes(y=ULH+500, x=unique_name), # purple triangle for low breeders
+            shape=25, fill="darkorchid", color="darkorchid", alpha=0.8, size=2.6) +
+      scale_y_continuous(limits=c(0,5500), breaks=c(0,1000,2000,3000,4000,5000)) +
+      theme_classic() +     
+      theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1.0)) + 
+      ggtitle("(b)") + 
+      theme(plot.title.position="plot", plot.title = element_text(face="bold")) + 
+          # parameter "plot" specifies that you want "title" flush with y-axis; bold face makes panel header bold 
+          # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
+      labs(x="", y = "Seasonal Elevational \n Range (m)") +
+      theme(plot.margin = unit(c(0,0.2,0.2,0.2), "cm")) +  # top, right, bottom, left
+          # These plot margins are crucial for making the 4-panel figure work w/ no text cut off 
+      theme(axis.text.y=element_text(size=10), axis.text.x=element_text(size=10), axis.title=element_text(size=10))
+print(t2)
+
+Fig4_two-panel <- plot_grid(t1, t2, nrow=2); Fig4_two-panel
+ggsave(Fig4_two-panel, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Fig4_two-panel_SeasonalElevRange_Fig_11-11-20.pdf", height=9, width=11, units="in") 
+# Max width of 7 inches for a 2-column figure in the Auk (1-column figure is 3.5 inches)
+```
+
+FYI, Manually add arrow symbol to plot: 
+p + annotate("segment", x = 2, xend = 4, y = 15, yend = 25, colour = "pink", size=3, alpha=0.6, arrow=arrow())
+
+I was using this syntax to pull from mini subsets with just data of interest, but this somehow undid the re-leveling I did w/ master dataset, which then messed up my order: 
+      geom_point(data=bhgo, aes(y=LLL, x=unique_name), # LLL for BHGO
+            shape=16, color="firebrick1", alpha=0.6, size=3.2) +
+      geom_point(data=bhgo, aes(y=ULH, x=unique_name), # ULH for BHGO
+            shape=16, color="gold1", alpha=0.6, size=3.2) +
+
+
+# Print environment for reproducibility
+```{r, include=FALSE}
+sessionInfo() # List of packages and versions in use 
+```
+
+###########
+
+## END 
+
+
 
