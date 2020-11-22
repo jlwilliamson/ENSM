@@ -404,7 +404,7 @@ p3 <- ggplot(data=ne, aes(x=reorder(unique_name, -partial_ensm_magnitude), y=par
             panel.grid.major=element_blank(), 
             panel.grid.minor=element_blank(),
             panel.background = element_blank()) +
-      labs(title="Taxa that failed to qualify as ENSM (magnitude of shift <2,000 m)",x="", 
+      labs(title="Candidate taxa that did not reach the ENSM threshold \n (magnitude of shift <2,000 m)",x="", 
            y = "Magnitude of Elevational Shift (m)") +
       theme(plot.title = element_text(face="bold")) + # This makes panel header bold 
        # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
