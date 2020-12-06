@@ -7,7 +7,7 @@ output:
     variant: gfm
 ---
 
-# Script associated with data wrangling, plots, and figures for Williamson & Witt, 'Elevational niche-shift migration'. This script inclues: 
+# Script associated with data wrangling, plots, and figures for Williamson & Witt, 'Elevational niche-shift migration'. This script includes: 
 
 *Data wrangling used for basic ENSM summary calculations
 *Using data from Table S1 (complete database of ENSM taxa) to generate magnitude of shift bar plots (Figs S4-S5)
