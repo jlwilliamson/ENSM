@@ -2,7 +2,7 @@
 
 See Dryad data publication (DOI above) for all raw data files, descriptions, and associated metadata. 
 
-**Files in `r_scripts` folder:** \n
+**Files in `r_scripts` folder:**
 
 `ENSM_table_species_elev_data.Rmd`: This is main analysis file for manuscript. If upper and lower elevational range limits were not available for each the breeding and non-breeding seasons for putative ENSM taxa, we used this script to download records from GBIF and estimate elevational range limits. See more detailed description of methods in the main manuscript. Script file also includes several suggestions about how to better automate and improve workflows (i.e. forloop for GBIF downloads, extracting elevations from raster layers, etc.)
 
