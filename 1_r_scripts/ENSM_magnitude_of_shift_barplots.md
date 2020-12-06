@@ -1,13 +1,13 @@
-# Script associated with data wrangling, plots, and figures for Williamson & Witt, ‘Elevational niche-shift migration’. This script inclues:
+# Script associated with data wrangling, plots, and figures for Williamson & Witt, ‘Elevational niche-shift migration’. This script includes:
 
-*Data wrangling used for basic ENSM calculations *Using data from Table
-S1 (complete database of ENSM taxa) to generate magnitude of shift bar
-plots (Figs S4-S5) *Using data from Table S2 (list of taxa that failed
-to qualify as ENSM) to generate magnitude of shift bar plots (Figure S7)
-*Code used to make Figure 4, seasonal elevational range and magnitudes
-of shift for all complete and partial ENSM taxa. Some quick calculations
-to generate magnitude of elevation shift barplots for the ensmlement
-(Figs S4-S5) of
+*Data wrangling used for basic ENSM summary calculations *Using data
+from Table S1 (complete database of ENSM taxa) to generate magnitude of
+shift bar plots (Figs S4-S5) *Using data from Table S2 (list of taxa
+that failed to qualify as ENSM) to generate magnitude of shift bar plots
+(Figure S7) *Code used to make Figure 4, seasonal elevational range and
+magnitudes of shift for all complete and partial ENSM taxa. Some quick
+calculations to generate magnitude of elevation shift barplots for the
+ensmlement (Figs S4-S5) of
 
 -----
 
@@ -153,7 +153,7 @@ ensm[ensm$sciname=="Zoothera dauma" & ensm$ensm_pop=="India",][23] <- "Zoothera 
 ensm[ensm$sciname=="Zoothera dauma" & ensm$ensm_pop=="Nepal",][23] <- "Zoothera dauma (Nepal)"
 ```
 
-# Clean, filter, wrangle non-ENSM taxa data (Table S2; added for reference at request of AE)
+# Clean, filter, wrangle non-ENSM taxa data (Table S2; added during revision)
 
 ``` r
 # Combine genus and species columns into a 'sciname' column 
@@ -809,7 +809,7 @@ p3 <- ggplot(data=ne, aes(x=reorder(unique_name, -partial_ensm_magnitude), y=par
             panel.grid.major=element_blank(), 
             panel.grid.minor=element_blank(),
             panel.background = element_blank()) +
-      labs(title="Taxa that failed to qualify as ENSM (magnitude of shift <2,000 m)",x="", 
+      labs(title="Candidate taxa that did not reach the ENSM threshold \n (magnitude of shift <2,000 m)",x="", 
            y = "Magnitude of Elevational Shift (m)") +
       theme(plot.title = element_text(face="bold")) + # This makes panel header bold 
        # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
@@ -1158,6 +1158,9 @@ add triangle symbols in Illustrator.
 
 # Figure 4 (horizontal; not in MS): Plot of seasonal elevational distributions and magnitudes of shift for ENSM taxa.
 
+Aesthetics unpolished because I abandoned this layout in favor of
+better-looking vertical alignment.
+
 ``` r
 # Complete and partial ENSM taxa combined 
 Fig4_horizontal <- ggplot(data=ensm, aes(x=unique_name, ymin=LLL, ymax=ULL)) + 
@@ -1203,7 +1206,7 @@ ggsave(Fig4_horizontal, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/EN
 # Figure 4 two-panel alternative (not in manuscript) - plot of seasonal elevational distributions and magnitudes of elev shift.
 
 This plot has older colors and symbols because I didn’t end up using it.
-Aesthetics would need to be tweaked if I did want to use it in the text.
+Aesthetics need lots of tweaking.
 
 FYI, Manually add arrow symbol to plot: p + annotate(“segment”, x = 2,
 xend = 4, y = 15, yend = 25, colour = “pink”, size=3, alpha=0.6,
