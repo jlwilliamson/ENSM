@@ -372,9 +372,10 @@ p2 <- ggplot(data=partial, aes(x=reorder(unique_name, -partial.mag), y=partial.m
       labs(title="Partial ENSM",x="", y = "Magnitude of Elevational Shift (m)") +
       theme(plot.title = element_text(face="bold")) + # This makes panel header bold 
        # This is good for labeling figure panels! Avoids having to manually toy w/ hjust and vjust
-      theme(axis.text.y=element_text(size=14), axis.text.x=element_text(size=6), axis.title=element_text(size=12))
+      theme(axis.text.y=element_text(size=14), axis.text.x=element_text(size=5), axis.title=element_text(size=12))
 print(p2)
-ggsave(p2, filename="FigS5_PartialENSM_RankedMagnitude_ElevShift.pdf", height=7, width=9, units="in")
+ggsave(p2, filename="FigS5_PartialENSM_RankedMagnitude_ElevShift.pdf", height=7, width=10, units="in")
+# Slightly larger width than other figures to allow for more label space on x-axis 
 
 # Note: common_names NEED to have region-specific designation as underscores (e.g. "India", "Nepal", etc.)
 # If they don't, ggplot will think multiple populations should be plotted on top of each other, which puts bars out of order
