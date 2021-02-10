@@ -486,7 +486,7 @@ print(Fig4)
 # Write to .png, which preserves formatting and unicode triangles 
 ggsave(plot=Fig4, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Figure4_SeasonalElevRange&Shifts_11-16-20.png",
        height=18, width=10, units="in", type="quartz") # type=quartz necessary for unicode symbols to print
- 
+
 # Write to pdf (though this won't have unicode triangles; see notes below)
 # ggsave(plot=Fig4, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Figure4_SeasonalElevRange&Shifts.pdf",
 #       device=cairo_pdf, height=12, width=8, units="in")
@@ -512,27 +512,30 @@ Alternatively, it would be possible to save the final plot to a pdf and add tria
 
 
 # Figure 4 (horizontal; not in MS): Plot of seasonal elevational distributions and magnitudes of shift for ENSM taxa. 
-Aesthetics unpolished because I abandoned this layout in favor of better-looking vertical alignment.
+Aesthetics *mostly* there because - I abandoned this layout in favor of better-looking vertical alignment; however, I did polish aesthetics after our paper was accepted to be able to use this version of the plot for the ASU department seminar I gave in Feb 2021. 
 ```{r}
 # Complete and partial ENSM taxa combined 
 Fig4_horizontal <- ggplot(data=ensm, aes(x=unique_name, ymin=LLL, ymax=ULL)) + 
           # Add fill=Clade to color by clade; reorder sorts in descending order based on magnitude of shift
    #   annotate(geom="rect", xmin=1, xmax=14, ymin=0, ymax=5500, alpha=0.3, fill="tan") + # highlight complete ENSM
-      geom_errorbar(aes(ymin=LLL, ymax=ULL), width=0.0, size=1.8, alpha=0.5, color="red1") + 
-      geom_errorbar(aes(ymin=LLH, ymax=ULH), width=0.0, size=1.8, alpha=0.5, color="mediumblue") +
+      geom_errorbar(aes(ymin=LLL, ymax=ULL), width=0.0, size=2.6, alpha=0.5, color="red1") + 
+      geom_errorbar(aes(ymin=LLH, ymax=ULH), width=0.0, size=2.6, alpha=0.5, color="mediumblue") +
       geom_vline(xintercept=14.5, linetype="longdash", size=0.4) +
           # geom_errorbar specifies exact elev range; width controls error bar caps, size controls  bar thickness 
-      geom_point(data=ensm[ensm$breeding_dir=="Low",], aes(y=ULH+500, x=unique_name), # Plot purple triangles for low breeders
-            shape=24, fill="goldenrod1", color="goldenrod1", alpha=0.8, size=1.5) +
+      # geom_point(data=ensm[ensm$breeding_dir=="Low",], aes(y=ULH+500, x=unique_name), # Plot triangles for low breeders (ABOVE BARS)
+      #       shape=24, fill="goldenrod1", color="goldenrod1", alpha=0.8, size=1.5) +
+      geom_point(data=ensm[ensm$breeding_dir=="Low",], aes(y=LLL-120, x=unique_name), # Plot triangles for low breeders (BELOW BARS)
+             shape=24, fill="black", color="black", alpha=0.8, size=2) +
       geom_point(data=ensm[ensm$unique_name=="Anser indicus (Nepal)",], aes(y=LLL, x=unique_name), # LLL for BHGO Nepal
-            shape=16, color="red1", alpha=0.6, size=2.0) +
+            shape=16, color="red1", alpha=0.6, size=2.6) +
       geom_point(data=ensm[ensm$unique_name=="Anser indicus (Nepal)",], aes(y=ULH, x=unique_name), # ULH for BHGO Nepal 
-            shape=16, color="mediumblue", alpha=0.6, size=2.0) +
+            shape=16, color="mediumblue", alpha=0.6, size=2.6) +
       geom_point(data=ensm[ensm$unique_name=="Anser indicus (India)",], aes(y=LLL, x=unique_name), # LLL for BHGO India
-            shape=16, color="red1", alpha=0.6, size=2.0) +
+            shape=16, color="red1", alpha=0.6, size=2.6) +
       geom_point(data=ensm[ensm$unique_name=="Anser indicus (India)",], aes(y=ULH, x=unique_name), # ULH for BHGO India 
-            shape=16, color="mediumblue", alpha=0.6, size=2.0) +
-      scale_y_continuous(limits=c(-2,6000), breaks=c(0,1000,2000,3000,4000,5000,6000)) +
+            shape=16, color="mediumblue", alpha=0.6, size=2.6) +
+      scale_y_continuous(limits=c(-120,5600), breaks=c(0,1000,2000,3000,4000,5000)) + # High limit must be 5,600 for P. eryth
+      coord_cartesian(ylim=c(50,5500)) + # Forces y and x axes to take shape/limits you give them
       theme_classic() +     
       theme(axis.text.x=element_text(angle=45, hjust=1.0)) + 
           # ggtitle("(a)") + 
@@ -542,13 +545,15 @@ Fig4_horizontal <- ggplot(data=ensm, aes(x=unique_name, ymin=LLL, ymax=ULL)) +
       labs(x="", y = "Seasonal Elevational Range (m)") + 
       theme(plot.margin = unit(c(0.2,0.2,0,0.2), "cm")) +  # top, right, bottom, left
           # These plot margins are crucial for making the 4-panel figure work w/ no text cut off 
-      theme(axis.title=element_text(size=12), axis.text.y=element_text(size=12), axis.text.x=element_text(size=8, face="italic"))
+      theme(axis.title=element_text(size=12), axis.text.y=element_text(size=12), axis.text.x=element_text(size=7, face="italic"))
           # These go: y-axis title, y-axis ticks, x-axis species labels (italic)
 print(Fig4_horizontal)
 
-ggsave(Fig4_horizontal, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Figure4-horizontal_SeasonalElevRange&Shifts_11-16-20.pdf", height=9, width=12, units="in") 
+ggsave(Fig4_horizontal, filename="/Users/Jessie/Dropbox (MSBbirds)/Rdirectory/ENSM/Figure4-horizontal_SeasonalElevRange&Shifts_11-16-20.pdf", height=8, width=12, units="in") 
 # Originally set this as width=9, height=5.5
 # Max width of 7 inches for a 2-column figure in the Auk (1-column figure is 3.5 inches)
+
+ggsave(Fig4_horizontal, filename="/Users/Jessie/Dropbox (MSBbirds)/ASU-Seminar-Talk-Feb2021/ENSM_Fig4_horizontal_SeasonalElevRange&Shifts_02-09-21.pdf", height=7, width=14, units="in") 
 ```
 
 
