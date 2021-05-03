@@ -20,3 +20,6 @@ If using data or code from this manuscript or repository, please cite:
 
 Williamson, Jessie; Witt, Christopher (2020), Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds to Ornithology, Dryad, Dataset, https://doi.org/10.5061/dryad.t1g1jwt1b
 
+---
+
+ADDENDUM (3 May 2021): Thanks very much to David Vander Pluym for bringing Tamarugo Conebill (*Conirostrum tamarugense*) to our attention as a probable ENSM species! Tamarugo Conebill breeds in northern Chile from 0-2,950 m and shifts upwards to ~3,400-4,100 in southern Peru for the non-breeding season. Schulenberg et al. 2007 note that *C. tamarugense* is an austral migrant; Fjeldsa and Krabbe 1990 note that some birds may breed at high elevations (suggesting residency? Partial austral migration only?). We have not accessed GBIF records or analyzed seasonal elevational range data for this species, though it is worth noting that it may be a partial ENSM species. 
