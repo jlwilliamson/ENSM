@@ -1,8 +1,8 @@
-# Code for Williamson &amp; Witt 2021, 'Elevational niche-shift migration' (ENSM).
+# Code for Williamson &amp; Witt 2021, 'Elevational niche-shift migration' (ENSM)
  
 **If using data or code from this manuscript or repository, please cite:** 
 
-Williamson, Jessie L. and Christopher C. Witt (2021). Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds. Ornithology 138: 1-26. https://doi.org/10.1093/ornithology/ukaa087 & https://doi.org/10.5061/dryad.t1g1jwt1b.
+Williamson, Jessie L. and Christopher C. Witt (2021). Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds. Ornithology 138: 1-26. https://doi.org/10.1093/ornithology/ukaa087.
 
 and 
 
@@ -15,13 +15,13 @@ See Dryad data publication for all raw data files, descriptions, and associated 
 
 **Files in `r_scripts` folder:**
 
-`ENSM_table_species_elev_data.Rmd`: This is main analysis file for manuscript. If upper and lower elevational range limits were not available for each the breeding and non-breeding seasons for putative ENSM taxa, we used this script to download records from GBIF and estimate elevational range limits. See more detailed description of methods in the main manuscript. Script file also includes several suggestions about how to better automate and improve workflows (i.e. forloop for GBIF downloads, extracting elevations from raster layers, etc.)
+`ENSM_table_species_elev_data.Rmd`: This is main analysis file for manuscript. If upper and lower elevational range limits were not available for each the breeding and non-breeding seasons for putative ENSM taxa, we used this script to download records from GBIF and estimate elevational range limits. See detailed description of methods in the main manuscript. Script file also includes several suggestions about how to better automate and improve workflows (i.e., forloop for GBIF downloads, extracting elevations from raster layers, etc.)
 
-Please note that the GBIF download process has changed from when I first wrote this script in 2019. I have included a new code chunk that describes how the process is currently done (In fall 2020).
+Note that the GBIF download process has changed from when I first wrote this script in 2019. I have included a new code chunk that describes how the process is currently done (In fall 2020).
 
 `ENSM_magnitude_of_shift_barplots.Rmd`: Script associated with data wrangling, plots, and figures. It includes data wrangling used for basic ENSM calculations, code to produce Figures 4, S4, S5, and S7. 
 
-`ENSM_RadialPhylogenyFig.Rmd`: Script used to produce the radial phylogeny in Figure 2 (91 tips; 12 complete ENSM species and 79 partial ENSM species). It contains code for reading in .nex tree files and corresponding .csv files with "phenotypic" data (aka migration mode and magnitudes of elevational shift), as well as some data for labeling clades. The final tree file was read out of R in .pdf form and extensive editing took place in Illustrator afterwards. So please note: the final results produced from this script do not generate the figure. Many thanks to Chauncey R. Gadek for initial code and help with tree files and data wrangling.
+`ENSM_RadialPhylogenyFig.Rmd`: Script used to produce the radial phylogeny in Figure 2 (91 tips; 12 complete ENSM species and 79 partial ENSM species). It contains code for reading in .nex tree files and corresponding .csv files with "phenotypic" data (aka migration mode and magnitudes of elevational shift), as well as some data for labeling clades. The final tree file was read out of R in .pdf form and extensive editing took place in Illustrator afterwards. So please note: the final results produced from this script do not generate Figure 2. Many thanks to Chauncey R. Gadek for code and tree wrangling.
 
 `TableS1_ENSM_Supplement_Nov2020.csv`: Table S1 containing all final information from our elevational limit compilations. The Excel version of this file called contains metadata in tab 2 of the Excel workbook; the .csv version of this file contains metadata in 'TableS1_ENSM_Supplement_Nov2020_METADATA.csv'.  
 
