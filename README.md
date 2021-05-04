@@ -1,4 +1,5 @@
-# Code for Williamson &amp; Witt, 'Elevational niche-shift migration', In Press. If using data and code, please cite https://doi.org/10.5061/dryad.t1g1jwt1b.
+# Code for Williamson &amp; Witt 2021, 'Elevational niche-shift migration', Ornithology 138: 1-26.
+# If using data and code, please cite https://doi.org/10.1093/ornithology/ukaa087 & https://doi.org/10.5061/dryad.t1g1jwt1b.
 
 See Dryad data publication (DOI above) for all raw data files, descriptions, and associated metadata. 
 
