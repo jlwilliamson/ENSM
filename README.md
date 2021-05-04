@@ -1,8 +1,17 @@
-# Code for Williamson &amp; Witt 2021, 'Elevational niche-shift migration', Ornithology 138: 1-26.
+# Code for Williamson &amp; Witt 2021, 'Elevational niche-shift migration' (ENSM).
  
-**If using data and code, please cite https://doi.org/10.1093/ornithology/ukaa087 & https://doi.org/10.5061/dryad.t1g1jwt1b.**
+**If using data or code from this manuscript or repository, please cite:** 
 
-See Dryad data publication (DOI above) for all raw data files, descriptions, and associated metadata. 
+Williamson, Jessie L. and Christopher C. Witt (2021). Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds. Ornithology 138: 1-26. https://doi.org/10.1093/ornithology/ukaa087 & https://doi.org/10.5061/dryad.t1g1jwt1b.
+
+and 
+
+Williamson, Jessie; Witt, Christopher (2020), Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds, Ornithology, Dryad, Dataset, https://doi.org/10.5061/dryad.t1g1jwt1b
+
+
+---
+
+See Dryad data publication for all raw data files, descriptions, and associated metadata. 
 
 **Files in `r_scripts` folder:**
 
@@ -17,10 +26,6 @@ Please note that the GBIF download process has changed from when I first wrote t
 `TableS1_ENSM_Supplement_Nov2020.csv`: Table S1 containing all final information from our elevational limit compilations. The Excel version of this file called contains metadata in tab 2 of the Excel workbook; the .csv version of this file contains metadata in 'TableS1_ENSM_Supplement_Nov2020_METADATA.csv'.  
 
 `TableS2_Non-ENSM_Supplement_Nov2020.csv`: Table S2 containing information about candidate taxa that failed to qualify as ENSM (defined as having a calculated magnitude of elevational shift of <2,000 m). The Excel version of this file called contains metadata in tab 2 of the Excel workbook; the .csv version of this file contains metadata in 'TableS2_ENSM_Supplement_Nov2020_METADATA.csv'.  
-
-If using data or code from this manuscript or repository, please cite: 
-
-Williamson, Jessie; Witt, Christopher (2020), Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds to Ornithology, Dryad, Dataset, https://doi.org/10.5061/dryad.t1g1jwt1b
 
 ---
 
