@@ -2,7 +2,7 @@
  
 **If using data or code from this manuscript or repository, please cite:** 
 
-Williamson, Jessie L. and Christopher C. Witt (2021). Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds. Ornithology 138: 1-26. https://doi.org/10.1093/ornithology/ukaa087.
+Williamson, Jessie L. and Christopher C. Witt (2021). Elevational niche-shift migration: Why the degree of elevational change matters for the ecology, evolution, and physiology of migratory birds. Ornithology 138: 1-26. https://doi.org/10.1093/ornithology/ukaa087
 
 and 
 
